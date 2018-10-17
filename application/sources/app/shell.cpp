@@ -290,6 +290,7 @@ int32_t shell_fatal(uint8_t* argv) {
 			flash_sys_log_address += sizeof(ak_msg_t);
 
 			uint32_t wait_time;
+			(void)wait_time;
 			if (t_msg.dbg_handler.start_exe >= t_msg.dbg_handler.start_post) {
 				wait_time = t_msg.dbg_handler.start_exe - t_msg.dbg_handler.start_post;
 			}
@@ -298,6 +299,7 @@ int32_t shell_fatal(uint8_t* argv) {
 			}
 
 			uint32_t exe_time;
+			(void)exe_time;
 			if (t_msg.dbg_handler.stop_exe >= t_msg.dbg_handler.start_exe) {
 				exe_time = t_msg.dbg_handler.stop_exe - t_msg.dbg_handler.start_exe;
 			}
@@ -740,6 +742,19 @@ int32_t shell_dbg(uint8_t* argv) {
 		view_render.update();
 
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_OFF, AC_DISPLAY_LOGO_INTERVAL, TIMER_ONE_SHOT);
+	}
+		break;
+
+	case 'v': {
+		uint32_t vbat;
+		(void)vbat;
+		vbat = sys_ctr_get_vbat_voltage();
+		LOGIN_PRINT("vbat: %d\n", vbat);
+	}
+		break;
+
+	case 's': {
+		sys_ctr_stop_mcu();
 	}
 		break;
 

@@ -60,6 +60,17 @@ void task_dbg(ak_msg_t* msg) {
 
 	case AC_DBG_TEST_3: {
 		APP_DBG_SIG("AC_DBG_TEST_3\n");
+		uint32_t data_len = get_data_len_dynamic_msg(msg);
+		APP_DBG("data_len: %d\n", data_len);
+
+		uint8_t* rev_data = (uint8_t*)malloc(data_len);
+		memcpy(rev_data, get_data_dynamic_msg(msg), data_len);
+		APP_DBG("rev_data:");
+		for (uint32_t i = 0; i < data_len; i++) {
+			APP_DBG(" %02X", *(rev_data + i));
+		}
+		APP_DBG("\n");
+		free(rev_data);
 	}
 		break;
 

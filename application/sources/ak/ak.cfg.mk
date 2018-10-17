@@ -10,12 +10,6 @@ PURE_MSG_POOL_SIZE = -DAK_PURE_MSG_POOL_SIZE=64
 #sizeof dynamic message pool.
 DYNAMIC_MSG_POOL_SIZE = -DAK_DYNAMIC_MSG_POOL_SIZE=8
 
-#numbers of dynamic pool data unit.
-DYNAMIC_DATA_POOL_SIZE = -DAK_DYNAMIC_DATA_POOL_SIZE=128
-
-#sizeof dynamic pool data unit.
-DYNAMIC_PDU_SIZE = -DAK_DYNAMIC_PDU_SIZE=4
-
 #sizeof timer pool.
 TIMER_POOL_SIZE = -DAK_TIMER_POOL_SIZE=16
 

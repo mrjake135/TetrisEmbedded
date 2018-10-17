@@ -122,15 +122,10 @@ typedef struct {
 /*******************/
 /* dynamic message */
 /*******************/
-typedef struct dynamic_pdu_t {
-	struct dynamic_pdu_t*	next;
-	uint8_t			data_unit[AK_DYNAMIC_PDU_SIZE];
-} dynamic_pdu_t;
-
 typedef struct {
 	ak_msg_t	msg_header;
 	uint32_t	len;
-	dynamic_pdu_t* data;
+	uint8_t*	data;
 } ak_msg_dynamic_t;
 
 /*******************************/
@@ -228,7 +223,7 @@ extern uint8_t get_data_len_common_msg(ak_msg_t* msg);
 extern ak_msg_t* get_dynamic_msg();
 extern uint32_t get_dynamic_msg_pool_used();
 extern uint8_t set_data_dynamic_msg(ak_msg_t* msg, uint8_t* data, uint32_t size);
-extern uint8_t get_data_dynamic_msg(ak_msg_t* msg, uint8_t* data, uint32_t size);
+extern uint8_t* get_data_dynamic_msg(ak_msg_t* msg);
 extern uint32_t get_data_len_dynamic_msg(ak_msg_t* msg);
 
 /*****************************************************************************

@@ -206,6 +206,7 @@ void sys_dbg_fatal(const int8_t* s, uint8_t c) {
 					flash_sys_log_address += sizeof(ak_msg_t);
 
 					uint32_t wait_time;
+					(void)wait_time;
 					if (t_msg.dbg_handler.start_exe >= t_msg.dbg_handler.start_post) {
 						wait_time = t_msg.dbg_handler.start_exe - t_msg.dbg_handler.start_post;
 					}
@@ -214,6 +215,7 @@ void sys_dbg_fatal(const int8_t* s, uint8_t c) {
 					}
 
 					uint32_t exe_time;
+					(void)exe_time;
 					if (t_msg.dbg_handler.stop_exe >= t_msg.dbg_handler.start_exe) {
 						exe_time = t_msg.dbg_handler.stop_exe - t_msg.dbg_handler.start_exe;
 					}

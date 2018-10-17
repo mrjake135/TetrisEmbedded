@@ -24,10 +24,6 @@ static ak_msg_t* free_list_pure_msg_pool;
 static ak_msg_dynamic_t msg_dynamic_pool[AK_DYNAMIC_MSG_POOL_SIZE];
 static ak_msg_t* free_list_dynamic_msg_pool;
 
-static dynamic_pdu_t data_msg_dynamic_pool[AK_DYNAMIC_DATA_POOL_SIZE];
-static dynamic_pdu_t* head_data_msg_dynamic_pool;
-static dynamic_pdu_t* tail_data_msg_dynamic_pool;
-
 static void pure_msg_pool_init();
 static void common_msg_pool_init();
 static void dynamic_msg_pool_init();
@@ -37,11 +33,6 @@ static void free_common_msg(ak_msg_t* msg);
 static void free_dynamic_msg(ak_msg_t* msg);
 
 static uint32_t	get_pool_msg_free(ak_msg_t* pool_msg);
-
-static dynamic_pdu_t* get_data_dynamic_pdu_pool(uint32_t size);
-static uint8_t get_data_dynamic_pdu(dynamic_pdu_t* dynamic_pdu, uint8_t* data, uint32_t size);
-static uint8_t set_data_dynamic_pdu(dynamic_pdu_t* dynamic_pdu, uint8_t* data, uint32_t size);
-static void free_data_dynamic_pdu_pool(dynamic_pdu_t* dynamic_pdu);
 
 void msg_init() {
 	pure_msg_pool_init();
@@ -318,17 +309,6 @@ void dynamic_msg_pool_init() {
 		}
 	}
 
-	head_data_msg_dynamic_pool = (dynamic_pdu_t*)data_msg_dynamic_pool;
-	for (index = 0; index < AK_DYNAMIC_DATA_POOL_SIZE; index++) {
-		if (index == (AK_DYNAMIC_DATA_POOL_SIZE - 1)) {
-			data_msg_dynamic_pool[index].next = NULL;
-			tail_data_msg_dynamic_pool = (dynamic_pdu_t*)&data_msg_dynamic_pool[index];
-		}
-		else {
-			data_msg_dynamic_pool[index].next = (dynamic_pdu_t*)&data_msg_dynamic_pool[index + 1];
-		}
-	}
-
 	EXIT_CRITICAL();
 }
 
@@ -339,7 +319,7 @@ void free_dynamic_msg(ak_msg_t* msg) {
 	msg->next = free_list_dynamic_msg_pool;
 	free_list_dynamic_msg_pool = msg;
 
-	free_data_dynamic_pdu_pool(((ak_msg_dynamic_t*)msg)->data);
+	ak_free(((ak_msg_dynamic_t*)msg)->data);
 
 	EXIT_CRITICAL();
 }
@@ -362,7 +342,7 @@ ak_msg_t* get_dynamic_msg() {
 	allocate_massage->src_task_id = get_current_task_id();
 
 	((ak_msg_dynamic_t*)allocate_massage)->len = 0;
-	((ak_msg_dynamic_t*)allocate_massage)->data = ((dynamic_pdu_t*)0);
+	((ak_msg_dynamic_t*)allocate_massage)->data = ((uint8_t*)0);
 
 	EXIT_CRITICAL();
 
@@ -387,116 +367,22 @@ uint8_t set_data_dynamic_msg(ak_msg_t* msg, uint8_t* data, uint32_t size) {
 	}
 
 	((ak_msg_dynamic_t*)msg)->len = size;
-	((ak_msg_dynamic_t*)msg)->data = get_data_dynamic_pdu_pool(size);
-	set_data_dynamic_pdu(((ak_msg_dynamic_t*)msg)->data, data, size);
+	((ak_msg_dynamic_t*)msg)->data = (uint8_t*)ak_malloc(size);
+	memcpy(((ak_msg_dynamic_t*)msg)->data, data, size);
 
 	return AK_MSG_OK;
 }
 
-uint8_t get_data_dynamic_msg(ak_msg_t* msg, uint8_t* data, uint32_t size) {
+uint8_t* get_data_dynamic_msg(ak_msg_t* msg) {
 	if (get_msg_type(msg) != DYNAMIC_MSG_TYPE) {
 		FATAL("MF", 0x46);
 	}
 
-	if (((ak_msg_dynamic_t*)msg)->len != size) {
-		FATAL("MF", 0x47);
-	}
-
-	get_data_dynamic_pdu(((ak_msg_dynamic_t*)msg)->data, data, size);
-
-	return AK_MSG_OK;
+	return ((ak_msg_dynamic_t*)msg)->data;
 }
 
 uint32_t get_data_len_dynamic_msg(ak_msg_t* msg) {
 	return ((ak_msg_dynamic_t*)msg)->len;
-}
-
-dynamic_pdu_t* get_data_dynamic_pdu_pool(uint32_t size) {
-	uint32_t i, size_pdu;
-	dynamic_pdu_t *ptemp, *phead;
-
-	size_pdu = size / AK_DYNAMIC_PDU_SIZE;
-	if ((size % AK_DYNAMIC_PDU_SIZE) != 0) {
-		size_pdu++;
-	}
-
-	ENTRY_CRITICAL();
-
-	phead = head_data_msg_dynamic_pool;
-	ptemp = head_data_msg_dynamic_pool;
-
-	for (i = 0; i < size_pdu; i++) {
-		if (ptemp->next == NULL) {
-			FATAL("MF", 0x48);
-		}
-		ptemp = ptemp->next;
-	}
-
-	head_data_msg_dynamic_pool = ptemp->next;
-	ptemp->next = NULL;
-
-	EXIT_CRITICAL();
-
-	return phead;
-}
-
-uint8_t get_data_dynamic_pdu(dynamic_pdu_t* dynamic_pdu, uint8_t* data, uint32_t size) {
-	dynamic_pdu_t *phead = dynamic_pdu;
-	uint32_t i;
-
-	for (i = 0; i < size; i++) {
-		/* switch to next pdu */
-		if ((i != 0) && (i % AK_DYNAMIC_PDU_SIZE == 0)) {
-			if (phead->next == NULL) {
-				FATAL("MF", 0x49);
-			}
-
-			phead = phead->next;
-		}
-
-		/* assign data */
-		data[i] = phead->data_unit[i % AK_DYNAMIC_PDU_SIZE];
-	}
-
-	return AK_MSG_NG;
-}
-
-uint8_t set_data_dynamic_pdu(dynamic_pdu_t* dynamic_pdu, uint8_t* data, uint32_t size) {
-	dynamic_pdu_t *ptemp = dynamic_pdu;
-	uint32_t index = 0, pdu_size, pdu_remain;
-
-	pdu_size = size / AK_DYNAMIC_PDU_SIZE;
-	pdu_remain = size % AK_DYNAMIC_PDU_SIZE;
-
-	while (index < pdu_size) {
-		memcpy(ptemp->data_unit, (uint8_t*)&data[index * AK_DYNAMIC_PDU_SIZE], AK_DYNAMIC_PDU_SIZE);
-
-		if (ptemp->next == NULL) {
-			FATAL("MF", 0x50);
-		}
-
-		ptemp = ptemp->next;
-		index++;
-	}
-
-	if (pdu_remain != 0) {
-		memcpy(ptemp->data_unit, (uint8_t*)&data[index * AK_DYNAMIC_PDU_SIZE], pdu_remain);
-	}
-
-	return AK_MSG_OK;
-}
-
-void free_data_dynamic_pdu_pool(dynamic_pdu_t* dynamic_pdu) {
-
-	ENTRY_CRITICAL();
-
-	tail_data_msg_dynamic_pool->next = dynamic_pdu;
-
-	while (tail_data_msg_dynamic_pool->next != NULL) {
-		tail_data_msg_dynamic_pool = tail_data_msg_dynamic_pool->next;
-	}
-
-	EXIT_CRITICAL();
 }
 
 /*****************************************************************************

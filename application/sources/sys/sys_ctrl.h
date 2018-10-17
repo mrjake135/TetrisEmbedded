@@ -72,6 +72,11 @@ extern uint32_t sys_ctr_get_exception_number();
 /* system restart application */
 extern void sys_ctr_restart_app();
 
+/* get vbat voltage */
+extern uint32_t sys_ctr_get_vbat_voltage();
+
+extern void sys_ctr_stop_mcu();
+
 extern int asm_test_add(int, int);
 
 #ifdef __cplusplus

@@ -139,8 +139,14 @@ void fsm_link_state_handle(ak_msg_t* msg) {
 		link_frame.header.type = LINK_FRAME_TYPE_DYNAMIC_MSG;
 		link_frame.header.sub_type = LINK_FRAME_SUB_TYPE_NONE;
 		link_frame.header.len = sizeof(ak_msg_if_header_t) + sizeof(uint32_t) + if_msg.len;
-		memcpy(&link_frame.data[0], (uint8_t*)&if_msg, sizeof(ak_msg_if_header_t) + sizeof(uint32_t));
-		get_data_dynamic_msg(msg, (uint8_t*)&link_frame.data[sizeof(ak_msg_if_header_t) + sizeof(uint32_t)], if_msg.len);
+
+		memcpy(&link_frame.data[0], \
+				(uint8_t*)&if_msg, \
+				sizeof(ak_msg_if_header_t) + sizeof(uint32_t));
+
+		memcpy((uint8_t*)&link_frame.data[sizeof(ak_msg_if_header_t) + sizeof(uint32_t)], \
+				get_data_dynamic_msg(msg), \
+				if_msg.len);
 
 		link_pdu->len = sizeof(link_frame_header_t) + link_frame.header.len;
 		memcpy(link_pdu->payload, (uint8_t*)&link_frame, link_pdu->len);

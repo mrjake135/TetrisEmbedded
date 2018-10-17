@@ -906,6 +906,32 @@ uint16_t adc_ct_io_read(uint8_t chanel) {
 	return ADC_GetConversionValue(ADC1);
 }
 
+uint32_t sys_ctr_get_vbat_voltage() {
+#define VREFINT_CAL_ADDR (uint16_t*)(0x1FF80078)
+	uint16_t vref_data=0, vref_cal;
+	uint8_t samples = 5;
+	uint32_t vbatX1000;
+
+	for (int i = 0; i < samples; i++) {
+		ADC_TempSensorVrefintCmd(ENABLE);
+		ADC_RegularChannelConfig(ADC1, ADC_Channel_Vrefint, 1, ADC_SampleTime_384Cycles);
+
+		while (ADC_GetFlagStatus(ADC1, ADC_FLAG_ADONS) == RESET);
+		sys_ctrl_delay_ms(10);
+
+		ADC_SoftwareStartConv(ADC1);
+		while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
+
+		vref_data += ADC_GetConversionValue(ADC1);
+	}
+
+	vref_data /= samples;
+	vref_cal = *VREFINT_CAL_ADDR;
+	vbatX1000 = (uint32_t)(3000.0 * (float)(vref_cal) / (float)vref_data);
+
+	return vbatX1000;
+}
+
 uint16_t adc_thermistor_io_read(uint8_t chanel) {
 	ADC_RegularChannelConfig(ADC1, chanel, 1, ADC_SampleTime_4Cycles);
 	while(ADC_GetFlagStatus(ADC1, ADC_FLAG_ADONS) == RESET);

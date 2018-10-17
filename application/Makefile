@@ -46,13 +46,13 @@ CONSOLE_BAUDRATE_DEF = -DSYS_CONSOLE_BAUDRATE=$(SYS_CONSOLE_BAUDRATE)
 OPTIMIZE_OPTION = -g -O2
 
 # Release build option, that is used in fatal function, restart system when fatal, and debug levels.
-RELEASE_OPTION = -DRELEASE
+RELEASE_OPTION = -URELEASE
 
 # Enable PIN (using led life) interrupt analyzer function [entry IRQ -> led life ON] and [exit IRQ -> led life OFF].
 IRQ_DEBUG_OPTION = -UAK_IO_IRQ_ANALYZER
 
 # Enable ak message log (via UART console).
-LOG_AK_KERNEL_ENABLE = -DAK_TASK_LOG_CONSOLE_ENABLE
+LOG_AK_KERNEL_ENABLE = -UAK_TASK_LOG_CONSOLE_ENABLE
 
 # Enable to using USB hareware configuration.
 USB_OPTION = -UUSING_USB_MOD
@@ -92,7 +92,7 @@ LD		=	$(GCC_PATH)/bin/arm-none-eabi-ld
 OBJCOPY		=	$(GCC_PATH)/bin/arm-none-eabi-objcopy
 OBJDUMP		=	$(GCC_PATH)/bin/arm-none-eabi-objdump
 OBJNM		=	$(GCC_PATH)/bin/arm-none-eabi-nm
-ARM_GDB		=	$(GCC_PATH)/bin/arm-none-eabi-gdb
+ARM_GDB		=	$(GCC_PATH)/bin/arm-none-eabi-gdb-py
 ARM_SIZE	=	$(GCC_PATH)/bin/arm-none-eabi-size
 
 # Set the compiler CPU/FPU options.
@@ -103,9 +103,9 @@ FPU = -mfloat-abi=soft
 CONSOLE_OPTION +=			\
 		-DLOGIN_PRINT_EN	\
 		-DSYS_PRINT_EN		\
-		-DSYS_DBG_EN		\
-		-UAPP_DBG_EN		\
+		-USYS_DBG_EN		\
 		-UAPP_PRINT_EN		\
+		-UAPP_DBG_EN		\
 		-UAPP_DBG_SIG_EN	\
 
 # C compiler flags

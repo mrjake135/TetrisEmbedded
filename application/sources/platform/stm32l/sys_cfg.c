@@ -301,6 +301,60 @@ void sys_ctr_sleep_wait_for_irq() {
 	PWR_EnterSleepMode(PWR_Regulator_ON, PWR_SLEEPEntry_WFI);
 }
 
+void sys_ctr_stop_mcu() {
+	uint32_t BOROptionBytes = 0;
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
+
+	BOROptionBytes = FLASH_OB_GetBOR();
+
+	if((BOROptionBytes & 0x0F) != OB_BOR_OFF)
+	{
+		/* Unlocks the option bytes block access */
+		FLASH_OB_Unlock();
+
+		/* Clears the FLASH pending flags */
+		FLASH_ClearFlag(FLASH_FLAG_EOP|FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR
+						| FLASH_FLAG_SIZERR | FLASH_FLAG_OPTVERR);
+
+		/* Select the desired V(BOR) Level ---------------------------------------*/
+		FLASH_OB_BORConfig(OB_BOR_OFF);
+
+		/* Launch the option byte loading */
+		FLASH_OB_Launch();
+	}
+
+	/* Configure all GPIO as analog to reduce current consumption on non used IOs */
+	/* Enable GPIOs clock */
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA | RCC_AHBPeriph_GPIOB | RCC_AHBPeriph_GPIOC |
+						  RCC_AHBPeriph_GPIOD | RCC_AHBPeriph_GPIOE | RCC_AHBPeriph_GPIOH
+						  , ENABLE);
+
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_40MHz;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_All;
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
+	GPIO_Init(GPIOD, &GPIO_InitStructure);
+	GPIO_Init(GPIOE, &GPIO_InitStructure);
+	GPIO_Init(GPIOH, &GPIO_InitStructure);
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+	/* Disable GPIOs clock */
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA | RCC_AHBPeriph_GPIOB | RCC_AHBPeriph_GPIOC |
+						  RCC_AHBPeriph_GPIOD | RCC_AHBPeriph_GPIOE | RCC_AHBPeriph_GPIOH
+						  , DISABLE);
+
+	/* Enable Ultra low power mode */
+	PWR_UltraLowPowerCmd(ENABLE);
+
+	/* Enter Stop Mode */
+	PWR_EnterSTOPMode(PWR_Regulator_LowPower, PWR_STOPEntry_WFI);
+
+	while(1){}
+}
+
 uint32_t sys_ctr_get_exception_number() {
 	volatile uint32_t exception_number = (uint32_t)__get_IPSR();
 	return exception_number;
