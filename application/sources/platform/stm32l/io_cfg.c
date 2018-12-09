@@ -695,7 +695,7 @@ void io_cfg_dac_hs1101() {
 	DAC_InitStructure.DAC_OutputBuffer = DAC_OutputBuffer_Enable;
 	DAC_Init(DAC_Channel_1, &DAC_InitStructure);
 
-	/* Enable DAC Channel1 */
+	/* DISABLE DAC Channel1 */
 	DAC_Cmd(DAC_Channel_1, DISABLE);
 
 	/* Set DAC Channel1 DHR register
@@ -815,6 +815,37 @@ uint32_t io_timer4_get_capture() {
 	return TIM_GetCapture4(TIM4);
 }
 
+void io_cfg_dac_out2_config() {
+	GPIO_InitTypeDef GPIO_InitStructure;
+	DAC_InitTypeDef DAC_InitStructure;
+
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+	/* Configure PA.05 (DAC_OUT2) in analog mode -------------------------*/
+	GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AN;
+	GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+	/* DAC Config */
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_DAC, ENABLE);
+
+	/* DAC channel2 Configuration */
+	DAC_InitStructure.DAC_Trigger = DAC_Trigger_None;
+	DAC_InitStructure.DAC_WaveGeneration = DAC_WaveGeneration_None;
+	DAC_InitStructure.DAC_OutputBuffer = DAC_OutputBuffer_Enable;
+	DAC_Init(DAC_Channel_2, &DAC_InitStructure);
+
+	/* Enable DAC Channel2 */
+	DAC_Cmd(DAC_Channel_2, ENABLE);
+}
+
+void io_cfg_dac_out2_set(uint32_t voltage) { /* unit mV */
+	uint32_t st_vbat = sys_ctr_get_vbat_voltage();
+	uint32_t st_dac_out = (voltage * 4095) / st_vbat;
+	DAC_SetChannel2Data(DAC_Align_12b_R, (uint16_t)st_dac_out);
+}
+
 void io_reset_timer4_capture() {
 	TIM_SelectSlaveMode(TIM4, TIM_SlaveMode_Reset);
 }
@@ -908,24 +939,20 @@ uint16_t adc_ct_io_read(uint8_t chanel) {
 
 uint32_t sys_ctr_get_vbat_voltage() {
 #define VREFINT_CAL_ADDR (uint16_t*)(0x1FF80078)
-	uint16_t vref_data=0, vref_cal;
-	uint8_t samples = 5;
+	uint16_t vref_data = 0, vref_cal;
 	uint32_t vbatX1000;
 
-	for (int i = 0; i < samples; i++) {
-		ADC_TempSensorVrefintCmd(ENABLE);
-		ADC_RegularChannelConfig(ADC1, ADC_Channel_Vrefint, 1, ADC_SampleTime_384Cycles);
+	ADC_TempSensorVrefintCmd(ENABLE);
+	ADC_RegularChannelConfig(ADC1, ADC_Channel_Vrefint, 1, ADC_SampleTime_384Cycles);
 
-		while (ADC_GetFlagStatus(ADC1, ADC_FLAG_ADONS) == RESET);
-		sys_ctrl_delay_ms(10);
+	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_ADONS) == RESET);
+	sys_ctrl_delay_ms(10);
 
-		ADC_SoftwareStartConv(ADC1);
-		while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
+	ADC_SoftwareStartConv(ADC1);
+	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
 
-		vref_data += ADC_GetConversionValue(ADC1);
-	}
+	vref_data += ADC_GetConversionValue(ADC1);
 
-	vref_data /= samples;
 	vref_cal = *VREFINT_CAL_ADDR;
 	vbatX1000 = (uint32_t)(3000.0 * (float)(vref_cal) / (float)vref_data);
 

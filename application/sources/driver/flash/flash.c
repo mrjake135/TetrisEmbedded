@@ -40,6 +40,42 @@
 /* flash enable debug */
 #define FLASH_DBG_EN						0
 
+#if !defined USE_EXTERNAL_FLASH
+
+uint8_t flash_read(uint32_t address, uint8_t* pbuf, uint32_t len) {
+	(void)address;
+	(void)pbuf;
+	(void)len;
+	return FLASH_DRIVER_NG;
+}
+
+uint8_t flash_write(uint32_t address, uint8_t* pbuf, uint32_t len) {
+	(void)address;
+	(void)pbuf;
+	(void)len;
+	return FLASH_DRIVER_NG;
+}
+
+uint8_t flash_erase_sector(uint32_t address) {
+	(void)address;
+	return FLASH_DRIVER_NG;
+}
+
+uint8_t flash_erase_block_32k(uint32_t address) {
+	(void)address;
+	return FLASH_DRIVER_NG;
+}
+
+uint8_t flash_erase_block_64k(uint32_t address) {
+	(void)address;
+	return FLASH_DRIVER_NG;
+}
+
+uint8_t flash_erase_full() {
+	return FLASH_DRIVER_NG;
+}
+
+#else /* USE_EXTERNAL_FLASH */
 /******************************************************************************
 * declare static function
 *******************************************************************************/
@@ -260,3 +296,4 @@ uint8_t  flash_erase_full() {
 
 	return flash_wait_to_idle();
 }
+#endif /* USE_EXTERNAL_FLASH */

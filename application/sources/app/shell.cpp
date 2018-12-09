@@ -582,8 +582,8 @@ int32_t shell_dbg(uint8_t* argv) {
 		set_if_des_task_id(s_msg, AC_TASK_DBG_ID);
 		set_if_sig(s_msg, AC_DBG_TEST_2);
 
-		set_msg_sig(s_msg, AC_LINK_SEND_PURE_MSG);
-		task_post(AC_LINK_ID, s_msg);
+		set_msg_sig(s_msg, AC_IF_PURE_MSG_OUT);
+		task_post(AC_TASK_IF_ID, s_msg);
 	}
 		break;
 
@@ -600,8 +600,8 @@ int32_t shell_dbg(uint8_t* argv) {
 		set_if_sig(s_msg, AC_DBG_TEST_2);
 		set_if_data_common_msg(s_msg, test_buf, 64);
 
-		set_msg_sig(s_msg, AC_LINK_SEND_COMMON_MSG);
-		task_post(AC_LINK_ID, s_msg);
+		set_msg_sig(s_msg, AC_IF_COMMON_MSG_OUT);
+		task_post(AC_TASK_IF_ID, s_msg);
 	}
 		break;
 
@@ -616,8 +616,8 @@ int32_t shell_dbg(uint8_t* argv) {
 			*(send_data + i) = i;
 		}
 		set_if_data_dynamic_msg(s_msg, send_data, 254);
-		set_msg_sig(s_msg, AC_LINK_SEND_DYNAMIC_MSG);
-		task_post(AC_LINK_ID, s_msg);
+		set_msg_sig(s_msg, AC_IF_DYNAMIC_MSG_OUT);
+		task_post(AC_TASK_IF_ID, s_msg);
 		ak_free(send_data);
 	}
 		break;
@@ -755,6 +755,24 @@ int32_t shell_dbg(uint8_t* argv) {
 
 	case 's': {
 		sys_ctr_stop_mcu();
+	}
+		break;
+
+	case 'i': {
+		io_cfg_dac_out2_config();
+		LOGIN_PRINT("io_cfg_dac_out2_config()\n");
+	}
+		break;
+
+	case 'd': {
+		io_cfg_dac_out2_set(2000);
+		LOGIN_PRINT("io_cfg_dac_out2_set(2000)\n");
+	}
+		break;
+
+	case 'q': {
+		/* https://www.charbase.com */
+		LOGIN_PRINT("\u25fe");
 	}
 		break;
 

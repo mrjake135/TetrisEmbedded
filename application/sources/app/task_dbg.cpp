@@ -34,8 +34,8 @@ void task_dbg(ak_msg_t* msg) {
 		set_if_sig(s_msg, GW_DEBUG_MSG_2);
 		set_if_data_common_msg(s_msg, test_buf, 64);
 
-		set_msg_sig(s_msg, AC_LINK_SEND_COMMON_MSG);
-		task_post(AC_LINK_ID, s_msg);
+		set_msg_sig(s_msg, AC_UART_IF_COMMON_MSG_OUT);
+		task_post(AC_TASK_UART_IF_ID, s_msg);
 	}
 		break;
 
@@ -53,8 +53,8 @@ void task_dbg(ak_msg_t* msg) {
 		set_if_sig(s_msg, GW_DEBUG_MSG_6);
 		set_if_data_dynamic_msg(s_msg, test_buf, 256);
 
-		set_msg_sig(s_msg, AC_LINK_SEND_DYNAMIC_MSG);
-		task_post(AC_LINK_ID, s_msg);
+		set_msg_sig(s_msg, AC_UART_IF_DYNAMIC_MSG_OUT);
+		task_post(AC_TASK_UART_IF_ID, s_msg);
 	}
 		break;
 
@@ -101,8 +101,29 @@ void task_dbg(ak_msg_t* msg) {
 
 	case AC_DBG_TEST_7: {
 		APP_DBG_SIG("AC_DBG_TEST_7\n");
-		sys_ctrl_delay_ms(240);
+		sys_ctrl_delay_ms(500);
 		timer_set(AC_TASK_DBG_ID, AC_DBG_TEST_7, 1000, TIMER_ONE_SHOT);
+	}
+		break;
+
+	case AC_DBG_TEST_8: {
+		APP_DBG_SIG("AC_DBG_TEST_8\n");
+		sys_ctrl_delay_ms(100);
+		timer_set(AC_TASK_DBG_ID, AC_DBG_TEST_8, 2000, TIMER_ONE_SHOT);
+	}
+		break;
+
+	case AC_DBG_TEST_9: {
+		APP_DBG_SIG("AC_DBG_TEST_9\n");
+		sys_ctrl_delay_ms(231);
+		timer_set(AC_TASK_DBG_ID, AC_DBG_TEST_9, 750, TIMER_ONE_SHOT);
+	}
+		break;
+
+	case AC_DBG_TEST_10: {
+		APP_DBG_SIG("AC_DBG_TEST_10\n");
+		sys_ctrl_delay_ms(41);
+		timer_set(AC_TASK_DBG_ID, AC_DBG_TEST_10, 500, TIMER_ONE_SHOT);
 	}
 		break;
 

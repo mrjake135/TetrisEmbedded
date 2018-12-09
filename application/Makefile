@@ -9,8 +9,8 @@ Print = @echo "~"
 NAME_MODULE = arm_cortex_m3_base_application
 PROJECT = $(NAME_MODULE)
 
-GCC_PATH	= /home/thannt/workspace/tools/gcc-arm-none-eabi-7-2018-q2-update
-OPENOCD_PATH	= /home/thannt/workspace/tools/openocd
+GCC_PATH	= $(HOME)/workspace/tools/gcc-arm-none-eabi-7-2018-q2-update
+OPENOCD_PATH	= $(HOME)/workspace/tools/openocd
 
 # Include sources file
 include sources/ak/Makefile.mk
@@ -108,17 +108,7 @@ CONSOLE_OPTION +=			\
 		-UAPP_DBG_EN		\
 		-UAPP_DBG_SIG_EN	\
 
-# C compiler flags
-CFLAGS +=	-mthumb			\
-		$(CPU)			\
-		$(FPU)			\
-		-ffunction-sections	\
-		-fdata-sections		\
-		-fstack-usage		\
-		-MD			\
-		-Wall			\
-		-std=c99		\
-		-c			\
+GENERAL_FLAGS +=			\
 		$(CONSOLE_BAUDRATE_DEF)	\
 		$(CONSOLE_OPTION)	\
 		$(IRQ_DEBUG_OPTION)	\
@@ -131,7 +121,20 @@ CFLAGS +=	-mthumb			\
 		-DUSE_STDPERIPH_DRIVER	\
 		-DSTM32L1XX_MD		\
 		-DSTM32L_PLATFORM	\
+		-DUSE_EXTERNAL_FLASH	\
 
+# C compiler flags
+CFLAGS +=	-mthumb			\
+		$(CPU)			\
+		$(FPU)			\
+		-ffunction-sections	\
+		-fdata-sections		\
+		-fstack-usage		\
+		-MD			\
+		-Wall			\
+		-std=c99		\
+		-c			\
+		$(GENERAL_FLAGS)	\
 
 # C++ compiler flags
 CPPFLAGS += 	-mthumb			\
@@ -147,18 +150,7 @@ CPPFLAGS += 	-mthumb			\
 		-Wall			\
 		-std=c++11		\
 		-c			\
-		$(CONSOLE_BAUDRATE_DEF)	\
-		$(CONSOLE_OPTION)	\
-		$(IRQ_DEBUG_OPTION)	\
-		$(WARNING_OPTION)	\
-		$(OPTIMIZE_OPTION)	\
-		$(RELEASE_OPTION)	\
-		$(LOG_AK_KERNEL_ENABLE)	\
-		$(APP_ADDR_OPTION)	\
-		$(USB_OPTION)		\
-		-DUSE_STDPERIPH_DRIVER	\
-		-DSTM32L1XX_MD		\
-		-DSTM32L_PLATFORM	\
+		$(GENERAL_FLAGS)	\
 
 # linker flags
 LDFLAGS	=	-Map=$(OBJECTS_DIR)/$(PROJECT).map	\

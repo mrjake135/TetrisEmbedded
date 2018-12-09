@@ -6,9 +6,9 @@
 #define LINK_PDU_BUF_SIZE			384
 #define LINK_PDU_POOL_SIZE			4
 
-#define LINK_PHY_FRAME_SEND_TO_INTERVAL		50 /* 50 ms */
+#define LINK_PHY_FRAME_SEND_TO_INTERVAL		1000 /* 1000 ms */
 
-#define LINK_PHY_FRAME_REV_TO_INTERVAL		25 /* 25 ms */
+#define LINK_PHY_FRAME_REV_TO_INTERVAL		500 /* 500 ms */
 
 /* DEBUG */
 #define LINK_DBG_SIG_EN		0

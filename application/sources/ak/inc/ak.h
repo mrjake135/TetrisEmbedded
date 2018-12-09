@@ -54,7 +54,6 @@ extern "C"
 #define TASK_PRI_LEVEL_5				(5)
 #define TASK_PRI_LEVEL_6				(6)
 #define TASK_PRI_LEVEL_7				(7)
-#define TASK_PRI_LEVEL_8				(8)
 
 #define AK_TASK_INTERRUPT_ID			(0xEE)
 #define AK_TASK_IDLE_ID					(0xEF)

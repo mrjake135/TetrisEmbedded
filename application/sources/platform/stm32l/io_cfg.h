@@ -138,10 +138,10 @@ extern "C"
 /****************************************************************************
  *Pin map CT sensor
 *****************************************************************************/
-#define CT1_ADC_PIN						(ADC_Channel_0)
-#define CT2_ADC_PIN						(ADC_Channel_2)
-#define CT3_ADC_PIN						(ADC_Channel_3)
-#define CT4_ADC_PIN						(ADC_Channel_4)
+#define CT1_ADC_PIN						(GPIO_Pin_0)
+#define CT2_ADC_PIN						(GPIO_Pin_2)
+#define CT3_ADC_PIN						(GPIO_Pin_3)
+#define CT4_ADC_PIN						(GPIO_Pin_4)
 
 #define CT_ADC_PORT						(GPIOA)
 #define CT_ADC_CLOCK					(RCC_APB2Periph_ADC1)
@@ -265,6 +265,9 @@ extern void io_hs1101_read_disable();
 extern void io_reset_timer4_capture();
 extern void io_start_timer4_capture();
 extern uint32_t io_timer4_get_capture();
+
+extern void io_cfg_dac_out2_config();
+extern void io_cfg_dac_out2_set(uint32_t voltage); /* unit mV */
 
 /******************************************************************************
 * adc function

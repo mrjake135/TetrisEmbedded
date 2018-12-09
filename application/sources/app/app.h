@@ -26,7 +26,6 @@ extern "C"
 /*****************************************************************************/
 /* define timer */
 #define FW_PACKED_TIMEOUT_INTERVAL			(5000)
-#define FW_CHECKING_INTERVAL				(500)
 
 /* define signal */
 enum {
@@ -87,8 +86,6 @@ enum {
  */
 /*****************************************************************************/
 /* define timer */
-#define AC_IF_TIMER_PACKET_TIMEOUT_INTERVAL			(500)
-
 /* define signal */
 enum {
 	AC_IF_PURE_MSG_IN = AK_USER_DEFINE_SIG,
@@ -144,6 +141,9 @@ enum {
 	AC_DBG_TEST_5,
 	AC_DBG_TEST_6,
 	AC_DBG_TEST_7,
+	AC_DBG_TEST_8,
+	AC_DBG_TEST_9,
+	AC_DBG_TEST_10,
 };
 
 /*****************************************************************************/
