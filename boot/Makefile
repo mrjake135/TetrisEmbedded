@@ -9,8 +9,8 @@ Print = @echo "~"
 NAME_MODULE = arm_cortex_m3_base_boot
 PROJECT = $(NAME_MODULE)
 
-GCC_PATH	= /home/thannt/workspace/tools/gcc-arm-none-eabi-7-2018-q2-update
-OPENOCD_PATH	= /home/thannt/workspace/tools/openocd
+GCC_PATH	= $(HOME)/workspace/tools/gcc-arm-none-eabi-7-2018-q2-update
+OPENOCD_PATH	= $(HOME)/workspace/tools/openocd
 
 #Include sources file
 include sources/app/Makefile.mk
