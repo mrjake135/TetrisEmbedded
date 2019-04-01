@@ -108,13 +108,13 @@ enum {
 /* define timer */
 /* define signal */
 enum {
-	GW_DEBUG_MSG_1 = AK_USER_DEFINE_SIG,
-	GW_DEBUG_MSG_2,
-	GW_DEBUG_MSG_3,
-	GW_DEBUG_MSG_4,
-	GW_DEBUG_MSG_5,
-	GW_DEBUG_MSG_6,
-	GW_DEBUG_MSG_7,
+	GW_DEBUG_1 = AK_USER_DEFINE_SIG,
+	GW_DEBUG_2,
+	GW_DEBUG_3,
+	GW_DEBUG_4,
+	GW_DEBUG_5,
+	GW_DEBUG_6,
+	GW_DEBUG_7,
 };
 
 #endif //__APP_IF_H__

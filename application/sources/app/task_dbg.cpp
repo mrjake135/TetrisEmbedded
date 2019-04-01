@@ -30,8 +30,8 @@ void task_dbg(ak_msg_t* msg) {
 		ak_msg_t* s_msg = get_common_msg();
 		set_if_des_type(s_msg, IF_TYPE_UART_GW);
 		set_if_src_type(s_msg, IF_TYPE_UART_AC);
-		set_if_des_task_id(s_msg, GW_TASK_DEBUG_MSG_ID);
-		set_if_sig(s_msg, GW_DEBUG_MSG_2);
+		set_if_des_task_id(s_msg, GW_TASK_DEBUG_ID);
+		set_if_sig(s_msg, GW_DEBUG_2);
 		set_if_data_common_msg(s_msg, test_buf, 64);
 
 		set_msg_sig(s_msg, AC_UART_IF_COMMON_MSG_OUT);
@@ -49,8 +49,8 @@ void task_dbg(ak_msg_t* msg) {
 		ak_msg_t* s_msg = get_dynamic_msg();
 		set_if_des_type(s_msg, IF_TYPE_UART_GW);
 		set_if_src_type(s_msg, IF_TYPE_UART_AC);
-		set_if_des_task_id(s_msg, GW_TASK_DEBUG_MSG_ID);
-		set_if_sig(s_msg, GW_DEBUG_MSG_6);
+		set_if_des_task_id(s_msg, GW_TASK_DEBUG_ID);
+		set_if_sig(s_msg, GW_DEBUG_6);
 		set_if_data_dynamic_msg(s_msg, test_buf, 256);
 
 		set_msg_sig(s_msg, AC_UART_IF_DYNAMIC_MSG_OUT);
@@ -71,6 +71,8 @@ void task_dbg(ak_msg_t* msg) {
 		}
 		APP_DBG("\n");
 		free(rev_data);
+
+		task_post_pure_msg(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_ON_LOGO);
 	}
 		break;
 

@@ -71,7 +71,7 @@ void sys_irq_shell() {
 			}
 		}
 		else {
-			APP_PRINT("\nerror: cmd too long, cmd size: %d, try again !\n", SHELL_BUFFER_LENGHT);
+			LOGIN_PRINT("\nerror: cmd too long, cmd size: %d, try again !\n", SHELL_BUFFER_LENGHT);
 			shell.index = 0;
 		}
 	}

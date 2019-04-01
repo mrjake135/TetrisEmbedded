@@ -609,8 +609,8 @@ int32_t shell_dbg(uint8_t* argv) {
 		ak_msg_t* s_msg = get_dynamic_msg();
 		set_if_des_type(s_msg, IF_TYPE_UART_GW);
 		set_if_src_type(s_msg, IF_TYPE_UART_AC);
-		set_if_des_task_id(s_msg, GW_TASK_DEBUG_MSG_ID);
-		set_if_sig(s_msg, GW_DEBUG_MSG_1);
+		set_if_des_task_id(s_msg, GW_TASK_DEBUG_ID);
+		set_if_sig(s_msg, GW_DEBUG_1);
 		uint8_t* send_data = (uint8_t*)ak_malloc(254);
 		for (uint8_t i = 0; i < 254; i++) {
 			*(send_data + i) = i;
