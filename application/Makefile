@@ -9,7 +9,7 @@ Print = @echo "~"
 NAME_MODULE = arm_cortex_m3_base_application
 PROJECT = $(NAME_MODULE)
 
-GCC_PATH	= $(HOME)/workspace/tools/gcc-arm-none-eabi-7-2018-q2-update
+GCC_PATH	= $(HOME)/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major
 OPENOCD_PATH	= $(HOME)/workspace/tools/openocd
 
 # Include sources file
@@ -75,13 +75,13 @@ SOURCES_ASM	+=
 SOURCES_ASM_	 = $(shell find $(SOURCES_ASM) -type f -printf "%f\n")
 OBJECTS		+= $(patsubst %.s, $(OBJECTS_DIR)/%.o, $(SOURCES_ASM_))
 
-LIBC		= $(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/libc.a
-LIBM		= $(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/libm.a
-LIBFPU		= $(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/libg.a
-LIBGCC		= $(GCC_PATH)/lib/gcc/arm-none-eabi/7.3.1/thumb/v7-m/libgcc.a
+LIBC		= $(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/nofp/libc.a
+LIBM		= $(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/nofp/libm.a
+LIBFPU		= $(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/nofp/libg.a
+LIBGCC		= $(GCC_PATH)/lib/gcc/arm-none-eabi/8.2.1/thumb/v7-m/nofp/libgcc.a
 
-LIB_PATH += -L$(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m
-LIB_PATH += -L$(GCC_PATH)/lib/gcc/arm-none-eabi/7.3.1/thumb/v7-m
+LIB_PATH += -L$(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/nofp
+LIB_PATH += -L$(GCC_PATH)/lib/gcc/arm-none-eabi/8.2.1/thumb/v7-m/nofp
 
 # The command for calling the compiler.
 CC		=	$(GCC_PATH)/bin/arm-none-eabi-gcc

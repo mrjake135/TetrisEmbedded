@@ -602,7 +602,7 @@ int String::lastIndexOf(const String &s2) const
 
 int String::lastIndexOf(const String &s2, unsigned int fromIndex) const
 {
-  	if (s2.len == 0 || len == 0 || s2.len > len) return -1;
+	if (s2.len == 0 || len == 0 || s2.len > len) return -1;
 	if (fromIndex >= len) fromIndex = len - 1;
 	int found = -1;
 	for (char *p = buffer; p <= buffer + fromIndex; p++) {
@@ -692,6 +692,8 @@ void String::remove(unsigned int index){
 	remove(index, (unsigned int)-1);
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wrestrict"
 void String::remove(unsigned int index, unsigned int count){
 	if (index >= len) { return; }
 	if (count <= 0) { return; }
@@ -701,6 +703,7 @@ void String::remove(unsigned int index, unsigned int count){
 	strncpy(writeTo, buffer + index + count,len - index);
 	buffer[len] = 0;
 }
+#pragma GCC diagnostic pop
 
 void String::toLowerCase(void)
 {

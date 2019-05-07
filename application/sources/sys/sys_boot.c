@@ -6,10 +6,13 @@
 
 static sys_boot_t sys_boot_obj;
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warray-bounds"
 void sys_boot_init() {
 	extern uint32_t _start_boot_share_data_flash;
 	memcpy((uint8_t*)&sys_boot_obj, (uint8_t*)((uint32_t)&_start_boot_share_data_flash), sizeof(sys_boot_t));
 }
+#pragma GCC diagnostic pop
 
 void sys_boot_get(sys_boot_t* obj) {
 	memcpy((uint8_t*)obj, (uint8_t*)&sys_boot_obj, sizeof(sys_boot_t));
