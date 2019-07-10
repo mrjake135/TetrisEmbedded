@@ -19,6 +19,7 @@ void btn_mode_callback(void* b) {
 	switch (me_b->state) {
 	case BUTTON_SW_STATE_PRESSED: {
 		APP_DBG("[btn_mode_callback] BUTTON_SW_STATE_PRESSED\n");
+		task_post_pure_msg(AC_TASK_TETRIS_CONTROL,AC_TETRIS_GAME_CONTROL_HOLDING_LEFT);
 	}
 		break;
 
@@ -29,7 +30,7 @@ void btn_mode_callback(void* b) {
 
 	case BUTTON_SW_STATE_RELEASED: {
 		APP_DBG("[btn_mode_callback] BUTTON_SW_STATE_RELEASED\n");
-		task_post_pure_msg(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_ON_LOGO);
+		task_post_pure_msg(AC_TASK_TETRIS_CONTROL,AC_TETRIS_GAME_CONTROL_HOLDING_LEFT_RELEASE);
 	}
 		break;
 
@@ -53,6 +54,7 @@ void btn_up_callback(void* b) {
 
 	case BUTTON_SW_STATE_RELEASED: {
 		APP_DBG("[btn_up_callback] BUTTON_SW_STATE_RELEASED\n");
+		task_post_pure_msg(AC_TASK_TETRIS_CONTROL,AC_TETRIS_GAME_CONTROL_MIDDLE);
 	}
 		break;
 
@@ -76,6 +78,7 @@ void btn_down_callback(void* b) {
 
 	case BUTTON_SW_STATE_RELEASED: {
 		APP_DBG("[btn_down_callback] BUTTON_SW_STATE_RELEASED\n");
+		task_post_pure_msg(AC_TASK_TETRIS_CONTROL,AC_TETRIS_GAME_CONTROL_RIGHT);
 	}
 		break;
 

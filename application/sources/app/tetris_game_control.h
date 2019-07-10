@@ -1,0 +1,5 @@
+#ifndef TETRS_GAME_CONTROL_H
+#define TETRS_GAME_CONTROL_H
+
+
+#endif // TETRS_GAME_CONTROL_H

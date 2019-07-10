@@ -23,7 +23,10 @@ enum {
 	AC_TASK_RF24_IF_ID,
 	AC_TASK_UART_IF_ID,
 	AC_TASK_DBG_ID,
-	AC_TASK_DISPLAY_ID,
+
+	AC_TASK_TETRIS_UI,
+	AC_TASK_TETRIS_CONTROL,
+	AC_TASK_TETRIS_LEVEL,
 
 	/* NRF24 NETWORKS */
 	AC_RF24_PHY_ID,
@@ -51,7 +54,9 @@ extern void task_if(ak_msg_t*);
 extern void task_rf24_if(ak_msg_t*);
 extern void task_uart_if(ak_msg_t*);
 extern void task_dbg(ak_msg_t*);
-extern void task_display(ak_msg_t*);
+extern void tetris_ui(ak_msg_t*);
+extern void tetris_game_control(ak_msg_t*);
+extern void tetris_level(ak_msg_t*);
 
 /* RF24 NETWORK TASK */
 extern void task_rf24_phy(ak_msg_t*);

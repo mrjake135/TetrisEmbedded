@@ -741,7 +741,6 @@ int32_t shell_dbg(uint8_t* argv) {
 
 		view_render.update();
 
-		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_OFF, AC_DISPLAY_LOGO_INTERVAL, TIMER_ONE_SHOT);
 	}
 		break;
 

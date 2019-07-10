@@ -105,7 +105,7 @@ CONSOLE_OPTION +=			\
 		-DSYS_PRINT_EN		\
 		-USYS_DBG_EN		\
 		-UAPP_PRINT_EN		\
-		-UAPP_DBG_EN		\
+		-DAPP_DBG_EN		\
 		-UAPP_DBG_SIG_EN	\
 
 GENERAL_FLAGS +=			\
@@ -209,7 +209,7 @@ help:
 flash: 	all
 	$(Print) BURNING $(TARGET:.axf=.bin) to target
 ifeq ($(dev),ak-flash)
-	ak_flash /dev/thesis_com_port $(TARGET:.axf=.bin) $(APP_START_ADDR_VAL)
+	ak_flash /dev/ttyUSB0 $(TARGET:.axf=.bin) $(APP_START_ADDR_VAL)
 else
 	st-flash write $(TARGET:.axf=.bin) $(APP_START_ADDR_VAL)
 endif
@@ -227,7 +227,7 @@ endif
 
 .PHONY: com
 com:
-	minicom -D /dev/thesis_com_port -b $(SYS_CONSOLE_BAUDRATE)
+	minicom -D /dev/ttyUSB0 -b $(SYS_CONSOLE_BAUDRATE)
 
 .PHONY: clean
 clean:

@@ -71,8 +71,6 @@ void task_dbg(ak_msg_t* msg) {
 		}
 		APP_DBG("\n");
 		free(rev_data);
-
-		task_post_pure_msg(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_ON_LOGO);
 	}
 		break;
 

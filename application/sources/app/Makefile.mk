@@ -15,7 +15,10 @@ SOURCES_CPP += sources/app/task_shell.cpp
 SOURCES_CPP += sources/app/task_life.cpp
 SOURCES_CPP += sources/app/task_fw.cpp
 SOURCES_CPP += sources/app/task_list.cpp
-SOURCES_CPP += sources/app/task_display.cpp
+
+SOURCES_CPP += sources/app/tetris_ui.cpp
+SOURCES_CPP += sources/app/tetris_game_control.cpp
+SOURCES_CPP += sources/app/tetris_game_levels.cpp
 
 SOURCES_CPP += sources/app/task_if.cpp
 SOURCES_CPP += sources/app/task_rf24_if.cpp

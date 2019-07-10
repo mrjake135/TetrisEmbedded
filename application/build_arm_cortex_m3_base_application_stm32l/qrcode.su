@@ -1,0 +1,8 @@
+qrcode.c:256:13:applyMask	48	static
+qrcode.c:279:13:setFunctionModule	16	static
+qrcode.c:285:13:drawFinderPattern	64	static
+qrcode.c:310:13:drawFormatBits	40	static
+qrcode.c:770:10:qrcode_getBufferSize	0	static
+qrcode.c:775:8:qrcode_initBytes	136	dynamic
+qrcode.c:851:8:qrcode_initText	32	static
+qrcode.c:855:6:qrcode_getModule	0	static

@@ -114,20 +114,6 @@ enum {
 };
 
 /*****************************************************************************/
-/*  LIFE task define
- */
-/*****************************************************************************/
-/* define timer */
-#define AC_DISPLAY_LOGO_INTERVAL			(10000)
-
-/* define signal */
-enum {
-	AC_DISPLAY_INITIAL = AK_USER_DEFINE_SIG,
-	AC_DISPLAY_SHOW_ON_LOGO,
-	AC_DISPLAY_SHOW_OFF,
-};
-
-/*****************************************************************************/
 /* DBG task define
  */
 /*****************************************************************************/
@@ -144,6 +130,46 @@ enum {
 	AC_DBG_TEST_8,
 	AC_DBG_TEST_9,
 	AC_DBG_TEST_10,
+};
+
+/*****************************************************************************/
+/* Tetris UI task define
+ */
+/*****************************************************************************/
+/* define signal */
+enum {
+	AC_TETRIS_INIT = AK_USER_DEFINE_SIG,
+	AC_TETRIS_NEW_PIECE,
+	AC_TETRIS_DOWN,
+	AC_TETRIS_ROTATE,
+	AC_TETRIS_UPDATE,
+	AC_TETRIS_RIGHT,
+	AC_TETRIS_LEFT,
+	AC_TETRIS_START_SCREEN,
+};
+
+/*****************************************************************************/
+/* Tetris Game control task define
+ */
+/*****************************************************************************/
+/* define signal */
+enum {
+	AC_TETRIS_GAME_CONTROL_HOLDING_LEFT = AK_USER_DEFINE_SIG,
+	AC_TETRIS_GAME_CONTROL_MIDDLE,
+	AC_TETRIS_GAME_CONTROL_RIGHT,
+	AC_TETRIS_GAME_CONTROL_HOLDING_LEFT_RELEASE,
+	AC_TETRIS_GAME_CONTROL_INIT,
+	AC_TETRIS_GAME_CONTROL_START_SCREEN,
+};
+
+/*****************************************************************************/
+/* Tetris Game Level task define
+ */
+/*****************************************************************************/
+/* define signal */
+enum {
+	AC_TETRIS_LEVEL_0 = AK_USER_DEFINE_SIG,
+	AC_TETRIS_LEVEL_1,
 };
 
 /*****************************************************************************/

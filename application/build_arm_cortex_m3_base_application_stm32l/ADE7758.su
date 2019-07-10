@@ -1,0 +1,61 @@
+ADE7758.cpp:31:3:ADE7758::ADE7758()	0	static
+ADE7758.cpp:35:6:void ADE7758::Init()	8	static
+ADE7758.cpp:46:6:void ADE7758::setSPI()	8	static
+ADE7758.cpp:53:6:void ADE7758::closeSPI()	8	static
+ADE7758.cpp:71:6:void ADE7758::enableChip()	0	static
+ADE7758.cpp:81:6:void ADE7758::disableChip()	0	static
+ADE7758.cpp:92:15:unsigned char ADE7758::read8(char)	16	static
+ADE7758.cpp:112:14:unsigned int ADE7758::read16(char)	16	static
+ADE7758.cpp:133:15:long unsigned int ADE7758::read24(char)	16	static
+ADE7758.cpp:157:6:void ADE7758::write8(char, unsigned char)	16	static
+ADE7758.cpp:181:6:void ADE7758::write16(char, unsigned int)	16	static
+ADE7758.cpp:203:6:void ADE7758::write24(char, long unsigned int)	16	static
+ADE7758.cpp:239:15:unsigned char ADE7758::getVersion()	0	static
+ADE7758.cpp:267:6:void ADE7758::setOpMode(char)	0	static
+ADE7758.cpp:270:5:int ADE7758::getOpMode()	8	static
+ADE7758.cpp:305:6:void ADE7758::setMMode(char)	0	static
+ADE7758.cpp:308:5:int ADE7758::getMMode()	8	static
+ADE7758.cpp:345:6:void ADE7758::setWavMode(char)	0	static
+ADE7758.cpp:348:5:int ADE7758::getWavMode()	8	static
+ADE7758.cpp:399:6:void ADE7758::setCompMode(char)	0	static
+ADE7758.cpp:402:5:int ADE7758::getCompMode()	8	static
+ADE7758.cpp:430:6:void ADE7758::setLcycMode(char)	0	static
+ADE7758.cpp:433:5:int ADE7758::getLcycMode()	8	static
+ADE7758.cpp:465:6:void ADE7758::gainSetup(char, char, char, char)	4	static
+ADE7758.cpp:470:6:void ADE7758::setupDivs(unsigned char, unsigned char, unsigned char)	16	static
+ADE7758.cpp:515:6:long int ADE7758::getMaskInterrupts()	0	static
+ADE7758.cpp:518:6:void ADE7758::setMaskInterrupts(long unsigned int)	0	static
+ADE7758.cpp:564:15:long unsigned int ADE7758::getStatus()	0	static
+ADE7758.cpp:568:15:long unsigned int ADE7758::resetStatus()	0	static
+ADE7758.cpp:579:6:long int ADE7758::getAIRMS()	16	static
+ADE7758.cpp:605:6:long int ADE7758::getBIRMS()	16	static
+ADE7758.cpp:631:6:long int ADE7758::getCIRMS()	16	static
+ADE7758.cpp:657:6:long int ADE7758::getAVRMS()	16	static
+ADE7758.cpp:682:6:long int ADE7758::getBVRMS()	16	static
+ADE7758.cpp:707:6:long int ADE7758::getCVRMS()	16	static
+ADE7758.cpp:733:6:long int ADE7758::avrms()	16	static
+ADE7758.cpp:745:6:long int ADE7758::bvrms()	16	static
+ADE7758.cpp:757:6:long int ADE7758::cvrms()	16	static
+ADE7758.cpp:776:6:long int ADE7758::airms()	16	static
+ADE7758.cpp:788:6:long int ADE7758::birms()	16	static
+ADE7758.cpp:800:6:long int ADE7758::cirms()	16	static
+ADE7758.cpp:817:5:int ADE7758::getFreq()	0	static
+ADE7758.cpp:822:6:void ADE7758::setLineCyc(int)	0	static
+ADE7758.cpp:829:5:int ADE7758::getACurrentOffset()	8	static
+ADE7758.cpp:832:5:int ADE7758::getBCurrentOffset()	8	static
+ADE7758.cpp:835:5:int ADE7758::getCCurrentOffset()	8	static
+ADE7758.cpp:838:6:void ADE7758::setACurrentOffset(int)	0	static
+ADE7758.cpp:841:6:void ADE7758::setBCurrentOffset(int)	0	static
+ADE7758.cpp:844:6:void ADE7758::setCCurrentOffset(int)	0	static
+ADE7758.cpp:851:5:int ADE7758::getAVoltageOffset()	8	static
+ADE7758.cpp:854:5:int ADE7758::getBVoltageOffset()	8	static
+ADE7758.cpp:857:5:int ADE7758::getCVoltageOffset()	8	static
+ADE7758.cpp:860:6:void ADE7758::setAVoltageOffset(int)	0	static
+ADE7758.cpp:863:6:void ADE7758::setBVoltageOffset(int)	0	static
+ADE7758.cpp:866:6:void ADE7758::setCVoltageOffset(int)	0	static
+ADE7758.cpp:876:6:void ADE7758::setZeroCrossingTimeout(int)	0	static
+ADE7758.cpp:879:5:int ADE7758::getZeroCrossingTimeout()	0	static
+ADE7758.cpp:887:6:char ADE7758::setPotLine(char, int)	24	static
+ADE7758.cpp:922:5:int ADE7758::getWatt(char)	0	static
+ADE7758.cpp:934:5:int ADE7758::getVar(char)	0	static
+ADE7758.cpp:946:5:int ADE7758::getVa(char)	0	static
