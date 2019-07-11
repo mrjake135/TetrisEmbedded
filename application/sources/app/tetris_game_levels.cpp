@@ -9,6 +9,8 @@
 #include "timer.h"
 #include "time.h"
 
+#include "tetris_ui.h"
+u_int16_t timeDrop;
 void tetris_level(ak_msg_t* msg) {
 	switch (msg->sig) {
 		case AC_TETRIS_LEVEL_0:
@@ -18,9 +20,17 @@ void tetris_level(ak_msg_t* msg) {
 			break;
 		case AC_TETRIS_LEVEL_1:
 		{
+			if(lines == 0) timeDrop = 800;
+			if(lines == 10) timeDrop = 700;
+			if(lines == 20) timeDrop = 600;
+			if(lines == 30) timeDrop = 500;
+			if(lines == 40) timeDrop = 400;
+			if(lines == 50) timeDrop = 300;
+			if(lines == 60) timeDrop = 200;
+			if(lines == 70) timeDrop = 100;
 			timer_remove_attr(AC_TASK_TETRIS_UI,AC_TETRIS_DOWN);
 			APP_DBG("SLOW FALLING\n");
-			timer_set(AC_TASK_TETRIS_UI,AC_TETRIS_DOWN,800,TIMER_PERIODIC);
+			timer_set(AC_TASK_TETRIS_UI,AC_TETRIS_DOWN,timeDrop,TIMER_PERIODIC);
 		}
 			break;
 		case AC_TETRIS_FAST_FALL:

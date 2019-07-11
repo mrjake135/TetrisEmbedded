@@ -46,4 +46,5 @@ build_arm_cortex_m3_base_application_stm32l/tetris_game_levels.o: \
  /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_pthreadtypes.h \
  /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/types.h \
  /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/timespec.h \
- /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_timespec.h
+ /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_timespec.h \
+ sources/app/tetris_ui.h
