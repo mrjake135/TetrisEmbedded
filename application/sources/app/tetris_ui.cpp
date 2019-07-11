@@ -207,6 +207,46 @@ void initGame()
 			if(arr[0] == 6) nextPieces[i][j] = Z[i][j];
 		}
 	}
+
+	for(int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if(arr[1] == 0) nextPieces[i+5][j] = I[i][j];
+			if(arr[1] == 1) nextPieces[i+5][j] = O[i][j];
+			if(arr[1] == 2)	nextPieces[i+5][j] = L[i][j];
+			if(arr[1] == 3) nextPieces[i+5][j] = T[i][j];
+			if(arr[1] == 4) nextPieces[i+5][j] = J[i][j];
+			if(arr[1] == 5) nextPieces[i+5][j] = Y[i][j];
+			if(arr[1] == 6) nextPieces[i+5][j] = Z[i][j];
+		}
+	}
+
+	for(int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if(arr[1] == 0) nextPieces[i+10][j] = I[i][j];
+			if(arr[1] == 1) nextPieces[i+10][j] = O[i][j];
+			if(arr[1] == 2)	nextPieces[i+10][j] = L[i][j];
+			if(arr[1] == 3) nextPieces[i+10][j] = T[i][j];
+			if(arr[1] == 4) nextPieces[i+10][j] = J[i][j];
+			if(arr[1] == 5) nextPieces[i+10][j] = Y[i][j];
+			if(arr[1] == 6) nextPieces[i+10][j] = Z[i][j];
+		}
+	}
+
+	for(int i = 0; i < 15; i ++)
+	{
+		for(int j = 0; j < 4; j++)
+		{
+			//board is larger than screen thus the 12 addition
+			if(board[i][j] == 0)
+				screenObj.drawRect(4*j,4*i+50,4,4,BLACK);
+			if(board[i][j] == 1)
+				screenObj.drawRect(4*j,4*i+50,4,4,WHITE);
+		}
+	}
 }
 void startScreen()
 {
