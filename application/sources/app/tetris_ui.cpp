@@ -101,13 +101,6 @@ uint8_t nextPieces[15][4] =  {{0,0,0,0},
 							  {0,0,0,0},
 							  {0,0,0,0},
 
-							  {0,0,0,0},
-
-							  {0,0,0,0},
-							  {0,0,0,0},
-							  {0,0,0,0},
-							  {0,0,0,0},
-
 							  {0,0,0,0},};
 
 uint8_t arrNext[3] = {0};
@@ -124,6 +117,7 @@ void tetris_ui(ak_msg_t* msg) {
 
 		case AC_TETRIS_INIT:{
 			APP_DBG("INIT\n");
+			initGame();
 			task_post_pure_msg(AC_TASK_TETRIS_UI,AC_TETRIS_NEW_PIECE);
 		}
 			break;
@@ -198,13 +192,13 @@ void initGame()
 	{
 		for (int j = 0; j < 4; j++)
 		{
-			if(arr[0] == 0) nextPieces[i][j] = I[i][j];
-			if(arr[0] == 1) nextPieces[i][j] = O[i][j];
-			if(arr[0] == 2)	nextPieces[i][j] = L[i][j];
-			if(arr[0] == 3) nextPieces[i][j] = T[i][j];
-			if(arr[0] == 4) nextPieces[i][j] = J[i][j];
-			if(arr[0] == 5) nextPieces[i][j] = Y[i][j];
-			if(arr[0] == 6) nextPieces[i][j] = Z[i][j];
+			if(arrNext[0] == 0) nextPieces[i][j] = I[i][j];
+			if(arrNext[0] == 1) nextPieces[i][j] = O[i][j];
+			if(arrNext[0] == 2)	nextPieces[i][j] = L[i][j];
+			if(arrNext[0] == 3) nextPieces[i][j] = T[i][j];
+			if(arrNext[0] == 4) nextPieces[i][j] = J[i][j];
+			if(arrNext[0] == 5) nextPieces[i][j] = Y[i][j];
+			if(arrNext[0] == 6) nextPieces[i][j] = Z[i][j];
 		}
 	}
 
@@ -212,41 +206,27 @@ void initGame()
 	{
 		for (int j = 0; j < 4; j++)
 		{
-			if(arr[1] == 0) nextPieces[i+5][j] = I[i][j];
-			if(arr[1] == 1) nextPieces[i+5][j] = O[i][j];
-			if(arr[1] == 2)	nextPieces[i+5][j] = L[i][j];
-			if(arr[1] == 3) nextPieces[i+5][j] = T[i][j];
-			if(arr[1] == 4) nextPieces[i+5][j] = J[i][j];
-			if(arr[1] == 5) nextPieces[i+5][j] = Y[i][j];
-			if(arr[1] == 6) nextPieces[i+5][j] = Z[i][j];
+			if(arrNext[1] == 0) nextPieces[i+5][j] = I[i][j];
+			if(arrNext[1] == 1) nextPieces[i+5][j] = O[i][j];
+			if(arrNext[1] == 2)	nextPieces[i+5][j] = L[i][j];
+			if(arrNext[1] == 3) nextPieces[i+5][j] = T[i][j];
+			if(arrNext[1] == 4) nextPieces[i+5][j] = J[i][j];
+			if(arrNext[1] == 5) nextPieces[i+5][j] = Y[i][j];
+			if(arrNext[1] == 6) nextPieces[i+5][j] = Z[i][j];
 		}
 	}
-
-	for(int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			if(arr[1] == 0) nextPieces[i+10][j] = I[i][j];
-			if(arr[1] == 1) nextPieces[i+10][j] = O[i][j];
-			if(arr[1] == 2)	nextPieces[i+10][j] = L[i][j];
-			if(arr[1] == 3) nextPieces[i+10][j] = T[i][j];
-			if(arr[1] == 4) nextPieces[i+10][j] = J[i][j];
-			if(arr[1] == 5) nextPieces[i+10][j] = Y[i][j];
-			if(arr[1] == 6) nextPieces[i+10][j] = Z[i][j];
-		}
-	}
-
-	for(int i = 0; i < 15; i ++)
+	for(int i = 0; i < 10; i ++)
 	{
 		for(int j = 0; j < 4; j++)
 		{
 			//board is larger than screen thus the 12 addition
-			if(board[i][j] == 0)
-				screenObj.drawRect(4*j,4*i+50,4,4,BLACK);
-			if(board[i][j] == 1)
-				screenObj.drawRect(4*j,4*i+50,4,4,WHITE);
+			if(nextPieces[i][j] == 0)
+				screenObj.drawRect(4*j+80,4*i+15,4,4,BLACK);
+			if(nextPieces[i][j] == 1)
+				screenObj.drawRect(4*j+80,4*i+15,4,4,WHITE);
 		}
 	}
+	screenObj.update();
 }
 void startScreen()
 {
