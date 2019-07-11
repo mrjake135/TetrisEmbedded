@@ -10,8 +10,9 @@
 #include "app.h"
 
 #include "timer.h"
-Adafruit_ssd1306syp screenObj;
 
+Adafruit_ssd1306syp screenObj;
+static void initGame();
 static void startScreen();
 
 static void rotate();
@@ -29,6 +30,7 @@ static bool checkBoardRight();
 static bool checkBoardLeft();
 static bool checkBoardRotation();
 static void checkTetris();
+static void checkLoss();
 
 //PIECES
 uint8_t x[4][4];
@@ -68,40 +70,69 @@ uint8_t Z[4][4] = {{0,0,0,0},
 				   {0,0,1,0}};
 
 
-uint8_t board[18][14] = {{2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
-						 {2,2,2,2,2,2,2,2,2,2,2,2,2,2}};
-int r;
-int c;
+uint8_t board[18][14] =   {{2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,0,0,0,0,0,0,0,0,0,0,0,0,2},
+						   {2,2,2,2,2,2,2,2,2,2,2,2,2,2}};
 
+uint8_t nextPieces[15][4] =  {{0,0,0,0},
+							  {0,0,0,0},
+							  {0,0,0,0},
+							  {0,0,0,0},
+
+							  {0,0,0,0},
+
+							  {0,0,0,0},
+							  {0,0,0,0},
+							  {0,0,0,0},
+							  {0,0,0,0},
+
+							  {0,0,0,0},
+
+							  {0,0,0,0},
+							  {0,0,0,0},
+							  {0,0,0,0},
+							  {0,0,0,0},
+
+							  {0,0,0,0},};
+
+uint8_t arrNext[3] = {0};
+int8_t r;
+int8_t c;
+uint8_t lines;
 void tetris_ui(ak_msg_t* msg) {
 	switch (msg->sig) {
 		case AC_TETRIS_START_SCREEN:{
+			APP_DBG("START SCREEN\n");
 			startScreen();
 		}
 			break;
+
 		case AC_TETRIS_INIT:{
-			screenObj.clear();
 			APP_DBG("INIT\n");
 			task_post_pure_msg(AC_TASK_TETRIS_UI,AC_TETRIS_NEW_PIECE);
 		}
 			break;
+
 		case AC_TETRIS_NEW_PIECE:{
+			screenObj.setCursor(63,5);
+			screenObj.fillRect(63,5,50,10,BLACK);
+			screenObj.print("Lines: ");
+			screenObj.print(lines);
 			r = 0;
 			c = 20;
 			APP_DBG("NEW PIECE\n");
@@ -109,14 +140,14 @@ void tetris_ui(ak_msg_t* msg) {
 			task_post_pure_msg(AC_TASK_TETRIS_UI,AC_TETRIS_UPDATE);
 		}
 			break;
+
 		case AC_TETRIS_UPDATE:{
-			APP_DBG("row: %d\n",r);
-			APP_DBG("col: %d\n",c);
 			APP_DBG("UPDATE\n");
 			currBoard();
 			screenObj.update();
 		}
 			break;
+
 		case AC_TETRIS_ROTATE:{
 			APP_DBG("ROTATE\n");
 			rotate();
@@ -137,6 +168,7 @@ void tetris_ui(ak_msg_t* msg) {
 			task_post_pure_msg(AC_TASK_TETRIS_UI,AC_TETRIS_UPDATE);
 		}
 			break;
+
 		case AC_TETRIS_LEFT: {
 			APP_DBG("LEFT\n");
 			pieceLeft();
@@ -146,18 +178,48 @@ void tetris_ui(ak_msg_t* msg) {
 	}
 }
 
+void initGame()
+{
+	lines = 0;
+	for(int i = 0; i < 17; i++)
+	{
+		for(int j = 1; j < 13; j++)
+		{
+			board[i][j] = 0;
+		}
+	}
+	screenObj.clear();
+	screenObj.drawRect(60,0,60,60,WHITE);
+	arrNext[0] = rand() % 7;
+	arrNext[1] = rand() % 7;
+	arrNext[2] = rand() % 7;
+
+	for(int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if(arr[0] == 0) nextPieces[i][j] = I[i][j];
+			if(arr[0] == 1) nextPieces[i][j] = O[i][j];
+			if(arr[0] == 2)	nextPieces[i][j] = L[i][j];
+			if(arr[0] == 3) nextPieces[i][j] = T[i][j];
+			if(arr[0] == 4) nextPieces[i][j] = J[i][j];
+			if(arr[0] == 5) nextPieces[i][j] = Y[i][j];
+			if(arr[0] == 6) nextPieces[i][j] = Z[i][j];
+		}
+	}
+}
 void startScreen()
 {
 	screenObj.initialize();
 	screenObj.clear();
 	screenObj.drawRect(0,0,120,60,WHITE);
-	screenObj.setCursor(40,10);
-	screenObj.print("Tetris");
+	screenObj.setCursor(2,10);
+	screenObj.print("Tetris by Khoa Phan");
 	screenObj.update();
 }
 void chooseRandom()
 {
-	int randNum = rand() % 7;
+	uint8_t randNum = rand() % 7;
 	if(randNum == 0) memcpy(x,I,16);
 	if(randNum == 1) memcpy(x,O,16);
 	if(randNum == 2) memcpy(x,L,16);
@@ -203,12 +265,13 @@ void currBoard(){
 		{
 			//board is larger than screen thus the 12 addition
 			if(board[i][j] == 0)
-				screenObj.drawRect(4*j-4,4*i-8,4,4,BLACK);
+				screenObj.drawRect(4*j,4*i-8,4,4,BLACK);
 			if(board[i][j] == 1)
-				screenObj.drawRect(4*j-4,4*i-8,4,4,WHITE);
+				screenObj.drawRect(4*j,4*i-8,4,4,WHITE);
 		}
 	}
-	screenObj.drawRect(0,0,48,60,WHITE);
+	screenObj.drawRect(4,0,48,60,WHITE);
+
 }
 
 void pieceInit(){
@@ -252,6 +315,7 @@ void pieceDown()
 			}
 		}
 		checkTetris();
+		checkLoss();
 		task_post_pure_msg(AC_TASK_TETRIS_UI,AC_TETRIS_NEW_PIECE);
 	}
 }
@@ -449,6 +513,22 @@ void checkTetris()
 					board[k][j] = board[k-1][j];
 				}
 			}
+			lines +=1;
 		}
+	}
+}
+
+void checkLoss()
+{
+	bool loss = false;
+	for(int j = 1; j < 13; j++)
+	{
+		if(board[4][j] > 0) loss = true;
+	}
+	if(loss)
+	{
+		task_post_pure_msg(AC_TASK_TETRIS_LEVEL, AC_TETRIS_LEVEL_0);
+		timer_set(AC_TASK_TETRIS_CONTROL, AC_TETRIS_GAME_CONTROL_START_SCREEN,1000,TIMER_ONE_SHOT);
+		timer_set(AC_TASK_TETRIS_UI, AC_TETRIS_START_SCREEN,1000,TIMER_ONE_SHOT);
 	}
 }

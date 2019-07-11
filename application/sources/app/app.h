@@ -138,14 +138,14 @@ enum {
 /*****************************************************************************/
 /* define signal */
 enum {
-	AC_TETRIS_INIT = AK_USER_DEFINE_SIG,
-	AC_TETRIS_NEW_PIECE,
+	AC_TETRIS_START_SCREEN = AK_USER_DEFINE_SIG,
 	AC_TETRIS_DOWN,
 	AC_TETRIS_ROTATE,
-	AC_TETRIS_UPDATE,
 	AC_TETRIS_RIGHT,
 	AC_TETRIS_LEFT,
-	AC_TETRIS_START_SCREEN,
+	AC_TETRIS_INIT,
+	AC_TETRIS_NEW_PIECE,
+	AC_TETRIS_UPDATE,
 };
 
 /*****************************************************************************/
@@ -154,12 +154,8 @@ enum {
 /*****************************************************************************/
 /* define signal */
 enum {
-	AC_TETRIS_GAME_CONTROL_HOLDING_LEFT = AK_USER_DEFINE_SIG,
-	AC_TETRIS_GAME_CONTROL_MIDDLE,
-	AC_TETRIS_GAME_CONTROL_RIGHT,
-	AC_TETRIS_GAME_CONTROL_HOLDING_LEFT_RELEASE,
-	AC_TETRIS_GAME_CONTROL_INIT,
-	AC_TETRIS_GAME_CONTROL_START_SCREEN,
+	AC_TETRIS_GAME_CONTROL_START_SCREEN = AK_USER_DEFINE_SIG,
+	AC_TETRIS_GAME_CONTROL_START,
 };
 
 /*****************************************************************************/
@@ -170,6 +166,7 @@ enum {
 enum {
 	AC_TETRIS_LEVEL_0 = AK_USER_DEFINE_SIG,
 	AC_TETRIS_LEVEL_1,
+	AC_TETRIS_FAST_FALL,
 };
 
 /*****************************************************************************/

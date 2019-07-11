@@ -18,9 +18,10 @@ task_t app_task_table[] = {
 	{AC_TASK_UART_IF_ID		,	TASK_PRI_LEVEL_4	,	task_uart_if		},
 	{AC_TASK_DBG_ID			,	TASK_PRI_LEVEL_4	,	task_dbg			},
 
+
 	{AC_TASK_TETRIS_UI		,	TASK_PRI_LEVEL_4	,	tetris_ui			},
 	{AC_TASK_TETRIS_CONTROL	,	TASK_PRI_LEVEL_4	,	tetris_game_control	},
-	{AC_TASK_TETRIS_LEVEL	,	TASK_PRI_LEVEL_3	,	tetris_level		},
+	{AC_TASK_TETRIS_LEVEL	,	TASK_PRI_LEVEL_4	,	tetris_level		},
 	/*************************************************************************/
 	/* RF24 NETWORK TASK */
 	/*************************************************************************/

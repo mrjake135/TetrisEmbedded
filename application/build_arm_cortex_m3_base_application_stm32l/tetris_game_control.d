@@ -36,4 +36,6 @@ build_arm_cortex_m3_base_application_stm32l/tetris_game_control.o: \
  sources/networks/rf_protocols/rf24/nwk/nrf_nwk_sig.h \
  sources/app/app_if.h sources/app/app_eeprom.h sources/app/app_data.h \
  sources/sys/sys_boot.h sources/ak/inc/port.h sources/app/task_list.h \
- sources/ak/inc/task.h sources/app/task_dbg.h
+ sources/ak/inc/task.h sources/app/task_dbg.h sources/app/app_dbg.h \
+ sources/common/xprintf.h \
+ /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdarg.h

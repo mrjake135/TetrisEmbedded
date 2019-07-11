@@ -35,6 +35,15 @@ build_arm_cortex_m3_base_application_stm32l/tetris_game_levels.o: \
  sources/ak/inc/task.h sources/common/container/log_queue.h \
  sources/networks/rf_protocols/rf24/nwk/nrf_nwk_sig.h \
  sources/app/app_if.h sources/app/app_eeprom.h sources/app/app_data.h \
- sources/sys/sys_boot.h sources/ak/inc/port.h sources/app/task_list.h \
- sources/ak/inc/task.h sources/app/task_dbg.h sources/ak/inc/timer.h \
- sources/ak/inc/timer.h
+ sources/sys/sys_boot.h sources/ak/inc/port.h sources/app/app_dbg.h \
+ sources/common/xprintf.h \
+ /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdarg.h \
+ sources/app/task_list.h sources/ak/inc/task.h sources/app/task_dbg.h \
+ sources/ak/inc/timer.h sources/ak/inc/timer.h \
+ /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/time.h \
+ /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/time.h \
+ /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/types.h \
+ /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_pthreadtypes.h \
+ /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/types.h \
+ /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/timespec.h \
+ /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_timespec.h
