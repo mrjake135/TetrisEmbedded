@@ -6044,7 +6044,8 @@ Linker script and memory map
                 0x000000000800dfbc        0x6 build_arm_cortex_m3_base_application_stm32l/task_shell.o
  *fill*         0x000000000800dfc2        0x2 
  .rodata._Z9tetris_uiP8ak_msg_t.str1.4
-                0x000000000800dfc4       0x1c build_arm_cortex_m3_base_application_stm32l/tetris_ui.o
+                0x000000000800dfc4       0x1b build_arm_cortex_m3_base_application_stm32l/tetris_ui.o
+ *fill*         0x000000000800dfdf        0x1 
  .rodata._ZL4font
                 0x000000000800dfe0      0x4fb build_arm_cortex_m3_base_application_stm32l/Adafruit_GFX.o
  *fill*         0x000000000800e4db        0x1 
@@ -6708,7 +6709,7 @@ LOAD /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-no
 LOAD /home/khoa/workspace/tools/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/lib/thumb/v7-m/nofp/libg.a
 OUTPUT(build_arm_cortex_m3_base_application_stm32l/arm_cortex_m3_base_application.axf elf32-littlearm)
 
-.debug_info     0x0000000000000000    0xa7aa7
+.debug_info     0x0000000000000000    0xa7aaf
  .debug_info    0x0000000000000000      0xb95 build_arm_cortex_m3_base_application_stm32l/fsm.o
  .debug_info    0x0000000000000b95     0x167f build_arm_cortex_m3_base_application_stm32l/task.o
  .debug_info    0x0000000000002214     0x131d build_arm_cortex_m3_base_application_stm32l/timer.o
@@ -6755,42 +6756,42 @@ OUTPUT(build_arm_cortex_m3_base_application_stm32l/arm_cortex_m3_base_applicatio
  .debug_info    0x000000000003442c     0x141b build_arm_cortex_m3_base_application_stm32l/task_life.o
  .debug_info    0x0000000000035847     0x1fd1 build_arm_cortex_m3_base_application_stm32l/task_fw.o
  .debug_info    0x0000000000037818     0x1236 build_arm_cortex_m3_base_application_stm32l/task_list.o
- .debug_info    0x0000000000038a4e     0x4510 build_arm_cortex_m3_base_application_stm32l/tetris_ui.o
- .debug_info    0x000000000003cf5e     0x13af build_arm_cortex_m3_base_application_stm32l/tetris_game_control.o
- .debug_info    0x000000000003e30d     0x1445 build_arm_cortex_m3_base_application_stm32l/tetris_game_levels.o
- .debug_info    0x000000000003f752     0x1577 build_arm_cortex_m3_base_application_stm32l/task_if.o
- .debug_info    0x0000000000040cc9     0x15c7 build_arm_cortex_m3_base_application_stm32l/task_rf24_if.o
- .debug_info    0x0000000000042290     0x1596 build_arm_cortex_m3_base_application_stm32l/task_uart_if.o
- .debug_info    0x0000000000043826     0x18f1 build_arm_cortex_m3_base_application_stm32l/task_dbg.o
- .debug_info    0x0000000000045117     0x364e build_arm_cortex_m3_base_application_stm32l/view_render.o
- .debug_info    0x0000000000048765     0x5531 build_arm_cortex_m3_base_application_stm32l/Adafruit_GFX.o
- .debug_info    0x000000000004dc96     0x3e86 build_arm_cortex_m3_base_application_stm32l/Adafruit_ssd1306syp.o
- .debug_info    0x0000000000051b1c     0x130e build_arm_cortex_m3_base_application_stm32l/eeprom.o
- .debug_info    0x0000000000052e2a     0x551c build_arm_cortex_m3_base_application_stm32l/Dhcp.o
- .debug_info    0x0000000000058346     0x4f0e build_arm_cortex_m3_base_application_stm32l/Dns.o
- .debug_info    0x000000000005d254     0x6ec1 build_arm_cortex_m3_base_application_stm32l/EthernetClient.o
- .debug_info    0x0000000000064115     0x62b0 build_arm_cortex_m3_base_application_stm32l/Ethernet.o
- .debug_info    0x000000000006a3c5     0x6690 build_arm_cortex_m3_base_application_stm32l/EthernetServer.o
- .debug_info    0x0000000000070a55     0x73b9 build_arm_cortex_m3_base_application_stm32l/EthernetUdp.o
- .debug_info    0x0000000000077e0e     0x165e build_arm_cortex_m3_base_application_stm32l/nrf_data.o
- .debug_info    0x000000000007946c     0x1fd0 build_arm_cortex_m3_base_application_stm32l/nrf_mac.o
- .debug_info    0x000000000007b43c     0x1bce build_arm_cortex_m3_base_application_stm32l/nrf_nwk.o
- .debug_info    0x000000000007d00a     0x1dd7 build_arm_cortex_m3_base_application_stm32l/nrf_phy.o
- .debug_info    0x000000000007ede1     0x12f3 build_arm_cortex_m3_base_application_stm32l/link_hal.o
- .debug_info    0x00000000000800d4     0x1dc8 build_arm_cortex_m3_base_application_stm32l/link.o
- .debug_info    0x0000000000081e9c     0x2420 build_arm_cortex_m3_base_application_stm32l/link_mac.o
- .debug_info    0x00000000000842bc     0x218f build_arm_cortex_m3_base_application_stm32l/link_phy.o
- .debug_info    0x000000000008644b     0x169f build_arm_cortex_m3_base_application_stm32l/link_data.o
- .debug_info    0x0000000000087aea     0x7d55 build_arm_cortex_m3_base_application_stm32l/PubSubClient.o
- .debug_info    0x000000000008f83f     0x337f build_arm_cortex_m3_base_application_stm32l/wiring_digital.o
- .debug_info    0x0000000000092bbe     0x4c97 build_arm_cortex_m3_base_application_stm32l/Print.o
- .debug_info    0x0000000000097855     0x48c1 build_arm_cortex_m3_base_application_stm32l/IPAddress.o
- .debug_info    0x000000000009c116     0x10ac build_arm_cortex_m3_base_application_stm32l/SPI.o
- .debug_info    0x000000000009d1c2     0x5a4e build_arm_cortex_m3_base_application_stm32l/Wire.o
- .debug_info    0x00000000000a2c10     0x3afd build_arm_cortex_m3_base_application_stm32l/twi.o
- .debug_info    0x00000000000a670d     0x139a build_arm_cortex_m3_base_application_stm32l/mini_cpp.o
+ .debug_info    0x0000000000038a4e     0x4518 build_arm_cortex_m3_base_application_stm32l/tetris_ui.o
+ .debug_info    0x000000000003cf66     0x13af build_arm_cortex_m3_base_application_stm32l/tetris_game_control.o
+ .debug_info    0x000000000003e315     0x1445 build_arm_cortex_m3_base_application_stm32l/tetris_game_levels.o
+ .debug_info    0x000000000003f75a     0x1577 build_arm_cortex_m3_base_application_stm32l/task_if.o
+ .debug_info    0x0000000000040cd1     0x15c7 build_arm_cortex_m3_base_application_stm32l/task_rf24_if.o
+ .debug_info    0x0000000000042298     0x1596 build_arm_cortex_m3_base_application_stm32l/task_uart_if.o
+ .debug_info    0x000000000004382e     0x18f1 build_arm_cortex_m3_base_application_stm32l/task_dbg.o
+ .debug_info    0x000000000004511f     0x364e build_arm_cortex_m3_base_application_stm32l/view_render.o
+ .debug_info    0x000000000004876d     0x5531 build_arm_cortex_m3_base_application_stm32l/Adafruit_GFX.o
+ .debug_info    0x000000000004dc9e     0x3e86 build_arm_cortex_m3_base_application_stm32l/Adafruit_ssd1306syp.o
+ .debug_info    0x0000000000051b24     0x130e build_arm_cortex_m3_base_application_stm32l/eeprom.o
+ .debug_info    0x0000000000052e32     0x551c build_arm_cortex_m3_base_application_stm32l/Dhcp.o
+ .debug_info    0x000000000005834e     0x4f0e build_arm_cortex_m3_base_application_stm32l/Dns.o
+ .debug_info    0x000000000005d25c     0x6ec1 build_arm_cortex_m3_base_application_stm32l/EthernetClient.o
+ .debug_info    0x000000000006411d     0x62b0 build_arm_cortex_m3_base_application_stm32l/Ethernet.o
+ .debug_info    0x000000000006a3cd     0x6690 build_arm_cortex_m3_base_application_stm32l/EthernetServer.o
+ .debug_info    0x0000000000070a5d     0x73b9 build_arm_cortex_m3_base_application_stm32l/EthernetUdp.o
+ .debug_info    0x0000000000077e16     0x165e build_arm_cortex_m3_base_application_stm32l/nrf_data.o
+ .debug_info    0x0000000000079474     0x1fd0 build_arm_cortex_m3_base_application_stm32l/nrf_mac.o
+ .debug_info    0x000000000007b444     0x1bce build_arm_cortex_m3_base_application_stm32l/nrf_nwk.o
+ .debug_info    0x000000000007d012     0x1dd7 build_arm_cortex_m3_base_application_stm32l/nrf_phy.o
+ .debug_info    0x000000000007ede9     0x12f3 build_arm_cortex_m3_base_application_stm32l/link_hal.o
+ .debug_info    0x00000000000800dc     0x1dc8 build_arm_cortex_m3_base_application_stm32l/link.o
+ .debug_info    0x0000000000081ea4     0x2420 build_arm_cortex_m3_base_application_stm32l/link_mac.o
+ .debug_info    0x00000000000842c4     0x218f build_arm_cortex_m3_base_application_stm32l/link_phy.o
+ .debug_info    0x0000000000086453     0x169f build_arm_cortex_m3_base_application_stm32l/link_data.o
+ .debug_info    0x0000000000087af2     0x7d55 build_arm_cortex_m3_base_application_stm32l/PubSubClient.o
+ .debug_info    0x000000000008f847     0x337f build_arm_cortex_m3_base_application_stm32l/wiring_digital.o
+ .debug_info    0x0000000000092bc6     0x4c97 build_arm_cortex_m3_base_application_stm32l/Print.o
+ .debug_info    0x000000000009785d     0x48c1 build_arm_cortex_m3_base_application_stm32l/IPAddress.o
+ .debug_info    0x000000000009c11e     0x10ac build_arm_cortex_m3_base_application_stm32l/SPI.o
+ .debug_info    0x000000000009d1ca     0x5a4e build_arm_cortex_m3_base_application_stm32l/Wire.o
+ .debug_info    0x00000000000a2c18     0x3afd build_arm_cortex_m3_base_application_stm32l/twi.o
+ .debug_info    0x00000000000a6715     0x139a build_arm_cortex_m3_base_application_stm32l/mini_cpp.o
 
-.debug_abbrev   0x0000000000000000    0x14723
+.debug_abbrev   0x0000000000000000    0x14732
  .debug_abbrev  0x0000000000000000      0x1fd build_arm_cortex_m3_base_application_stm32l/fsm.o
  .debug_abbrev  0x00000000000001fd      0x3cb build_arm_cortex_m3_base_application_stm32l/task.o
  .debug_abbrev  0x00000000000005c8      0x3f4 build_arm_cortex_m3_base_application_stm32l/timer.o
@@ -6837,40 +6838,40 @@ OUTPUT(build_arm_cortex_m3_base_application_stm32l/arm_cortex_m3_base_applicatio
  .debug_abbrev  0x000000000000801e      0x32c build_arm_cortex_m3_base_application_stm32l/task_life.o
  .debug_abbrev  0x000000000000834a      0x46e build_arm_cortex_m3_base_application_stm32l/task_fw.o
  .debug_abbrev  0x00000000000087b8      0x2c0 build_arm_cortex_m3_base_application_stm32l/task_list.o
- .debug_abbrev  0x0000000000008a78      0x64e build_arm_cortex_m3_base_application_stm32l/tetris_ui.o
- .debug_abbrev  0x00000000000090c6      0x332 build_arm_cortex_m3_base_application_stm32l/tetris_game_control.o
- .debug_abbrev  0x00000000000093f8      0x357 build_arm_cortex_m3_base_application_stm32l/tetris_game_levels.o
- .debug_abbrev  0x000000000000974f      0x389 build_arm_cortex_m3_base_application_stm32l/task_if.o
- .debug_abbrev  0x0000000000009ad8      0x341 build_arm_cortex_m3_base_application_stm32l/task_rf24_if.o
- .debug_abbrev  0x0000000000009e19      0x334 build_arm_cortex_m3_base_application_stm32l/task_uart_if.o
- .debug_abbrev  0x000000000000a14d      0x3ac build_arm_cortex_m3_base_application_stm32l/task_dbg.o
- .debug_abbrev  0x000000000000a4f9      0x51a build_arm_cortex_m3_base_application_stm32l/view_render.o
- .debug_abbrev  0x000000000000aa13      0x77c build_arm_cortex_m3_base_application_stm32l/Adafruit_GFX.o
- .debug_abbrev  0x000000000000b18f      0x5fb build_arm_cortex_m3_base_application_stm32l/Adafruit_ssd1306syp.o
- .debug_abbrev  0x000000000000b78a      0x311 build_arm_cortex_m3_base_application_stm32l/eeprom.o
- .debug_abbrev  0x000000000000ba9b      0x8be build_arm_cortex_m3_base_application_stm32l/Dhcp.o
- .debug_abbrev  0x000000000000c359      0x80b build_arm_cortex_m3_base_application_stm32l/Dns.o
- .debug_abbrev  0x000000000000cb64      0x941 build_arm_cortex_m3_base_application_stm32l/EthernetClient.o
- .debug_abbrev  0x000000000000d4a5      0x81a build_arm_cortex_m3_base_application_stm32l/Ethernet.o
- .debug_abbrev  0x000000000000dcbf      0x892 build_arm_cortex_m3_base_application_stm32l/EthernetServer.o
- .debug_abbrev  0x000000000000e551      0x9e9 build_arm_cortex_m3_base_application_stm32l/EthernetUdp.o
- .debug_abbrev  0x000000000000ef3a      0x3be build_arm_cortex_m3_base_application_stm32l/nrf_data.o
- .debug_abbrev  0x000000000000f2f8      0x50a build_arm_cortex_m3_base_application_stm32l/nrf_mac.o
- .debug_abbrev  0x000000000000f802      0x3ba build_arm_cortex_m3_base_application_stm32l/nrf_nwk.o
- .debug_abbrev  0x000000000000fbbc      0x3dd build_arm_cortex_m3_base_application_stm32l/nrf_phy.o
- .debug_abbrev  0x000000000000ff99      0x33b build_arm_cortex_m3_base_application_stm32l/link_hal.o
- .debug_abbrev  0x00000000000102d4      0x44d build_arm_cortex_m3_base_application_stm32l/link.o
- .debug_abbrev  0x0000000000010721      0x55d build_arm_cortex_m3_base_application_stm32l/link_mac.o
- .debug_abbrev  0x0000000000010c7e      0x641 build_arm_cortex_m3_base_application_stm32l/link_phy.o
- .debug_abbrev  0x00000000000112bf      0x3f5 build_arm_cortex_m3_base_application_stm32l/link_data.o
- .debug_abbrev  0x00000000000116b4      0x98c build_arm_cortex_m3_base_application_stm32l/PubSubClient.o
- .debug_abbrev  0x0000000000012040      0x408 build_arm_cortex_m3_base_application_stm32l/wiring_digital.o
- .debug_abbrev  0x0000000000012448      0x639 build_arm_cortex_m3_base_application_stm32l/Print.o
- .debug_abbrev  0x0000000000012a81      0x69e build_arm_cortex_m3_base_application_stm32l/IPAddress.o
- .debug_abbrev  0x000000000001311f      0x3fd build_arm_cortex_m3_base_application_stm32l/SPI.o
- .debug_abbrev  0x000000000001351c      0x8aa build_arm_cortex_m3_base_application_stm32l/Wire.o
- .debug_abbrev  0x0000000000013dc6      0x568 build_arm_cortex_m3_base_application_stm32l/twi.o
- .debug_abbrev  0x000000000001432e      0x3f5 build_arm_cortex_m3_base_application_stm32l/mini_cpp.o
+ .debug_abbrev  0x0000000000008a78      0x65d build_arm_cortex_m3_base_application_stm32l/tetris_ui.o
+ .debug_abbrev  0x00000000000090d5      0x332 build_arm_cortex_m3_base_application_stm32l/tetris_game_control.o
+ .debug_abbrev  0x0000000000009407      0x357 build_arm_cortex_m3_base_application_stm32l/tetris_game_levels.o
+ .debug_abbrev  0x000000000000975e      0x389 build_arm_cortex_m3_base_application_stm32l/task_if.o
+ .debug_abbrev  0x0000000000009ae7      0x341 build_arm_cortex_m3_base_application_stm32l/task_rf24_if.o
+ .debug_abbrev  0x0000000000009e28      0x334 build_arm_cortex_m3_base_application_stm32l/task_uart_if.o
+ .debug_abbrev  0x000000000000a15c      0x3ac build_arm_cortex_m3_base_application_stm32l/task_dbg.o
+ .debug_abbrev  0x000000000000a508      0x51a build_arm_cortex_m3_base_application_stm32l/view_render.o
+ .debug_abbrev  0x000000000000aa22      0x77c build_arm_cortex_m3_base_application_stm32l/Adafruit_GFX.o
+ .debug_abbrev  0x000000000000b19e      0x5fb build_arm_cortex_m3_base_application_stm32l/Adafruit_ssd1306syp.o
+ .debug_abbrev  0x000000000000b799      0x311 build_arm_cortex_m3_base_application_stm32l/eeprom.o
+ .debug_abbrev  0x000000000000baaa      0x8be build_arm_cortex_m3_base_application_stm32l/Dhcp.o
+ .debug_abbrev  0x000000000000c368      0x80b build_arm_cortex_m3_base_application_stm32l/Dns.o
+ .debug_abbrev  0x000000000000cb73      0x941 build_arm_cortex_m3_base_application_stm32l/EthernetClient.o
+ .debug_abbrev  0x000000000000d4b4      0x81a build_arm_cortex_m3_base_application_stm32l/Ethernet.o
+ .debug_abbrev  0x000000000000dcce      0x892 build_arm_cortex_m3_base_application_stm32l/EthernetServer.o
+ .debug_abbrev  0x000000000000e560      0x9e9 build_arm_cortex_m3_base_application_stm32l/EthernetUdp.o
+ .debug_abbrev  0x000000000000ef49      0x3be build_arm_cortex_m3_base_application_stm32l/nrf_data.o
+ .debug_abbrev  0x000000000000f307      0x50a build_arm_cortex_m3_base_application_stm32l/nrf_mac.o
+ .debug_abbrev  0x000000000000f811      0x3ba build_arm_cortex_m3_base_application_stm32l/nrf_nwk.o
+ .debug_abbrev  0x000000000000fbcb      0x3dd build_arm_cortex_m3_base_application_stm32l/nrf_phy.o
+ .debug_abbrev  0x000000000000ffa8      0x33b build_arm_cortex_m3_base_application_stm32l/link_hal.o
+ .debug_abbrev  0x00000000000102e3      0x44d build_arm_cortex_m3_base_application_stm32l/link.o
+ .debug_abbrev  0x0000000000010730      0x55d build_arm_cortex_m3_base_application_stm32l/link_mac.o
+ .debug_abbrev  0x0000000000010c8d      0x641 build_arm_cortex_m3_base_application_stm32l/link_phy.o
+ .debug_abbrev  0x00000000000112ce      0x3f5 build_arm_cortex_m3_base_application_stm32l/link_data.o
+ .debug_abbrev  0x00000000000116c3      0x98c build_arm_cortex_m3_base_application_stm32l/PubSubClient.o
+ .debug_abbrev  0x000000000001204f      0x408 build_arm_cortex_m3_base_application_stm32l/wiring_digital.o
+ .debug_abbrev  0x0000000000012457      0x639 build_arm_cortex_m3_base_application_stm32l/Print.o
+ .debug_abbrev  0x0000000000012a90      0x69e build_arm_cortex_m3_base_application_stm32l/IPAddress.o
+ .debug_abbrev  0x000000000001312e      0x3fd build_arm_cortex_m3_base_application_stm32l/SPI.o
+ .debug_abbrev  0x000000000001352b      0x8aa build_arm_cortex_m3_base_application_stm32l/Wire.o
+ .debug_abbrev  0x0000000000013dd5      0x568 build_arm_cortex_m3_base_application_stm32l/twi.o
+ .debug_abbrev  0x000000000001433d      0x3f5 build_arm_cortex_m3_base_application_stm32l/mini_cpp.o
 
 .debug_loc      0x0000000000000000    0x22fdb
  .debug_loc     0x0000000000000000       0x4a build_arm_cortex_m3_base_application_stm32l/fsm.o
@@ -7191,7 +7192,7 @@ OUTPUT(build_arm_cortex_m3_base_application_stm32l/arm_cortex_m3_base_applicatio
  .debug_ranges  0x0000000000005b08       0x58 build_arm_cortex_m3_base_application_stm32l/twi.o
  .debug_ranges  0x0000000000005b60       0x38 build_arm_cortex_m3_base_application_stm32l/mini_cpp.o
 
-.debug_line     0x0000000000000000    0x2d2c7
+.debug_line     0x0000000000000000    0x2d2d6
  .debug_line    0x0000000000000000      0x208 build_arm_cortex_m3_base_application_stm32l/fsm.o
  .debug_line    0x0000000000000208      0x907 build_arm_cortex_m3_base_application_stm32l/task.o
  .debug_line    0x0000000000000b0f      0x626 build_arm_cortex_m3_base_application_stm32l/timer.o
@@ -7238,40 +7239,40 @@ OUTPUT(build_arm_cortex_m3_base_application_stm32l/arm_cortex_m3_base_applicatio
  .debug_line    0x0000000000015f3b      0x4a5 build_arm_cortex_m3_base_application_stm32l/task_life.o
  .debug_line    0x00000000000163e0      0xaea build_arm_cortex_m3_base_application_stm32l/task_fw.o
  .debug_line    0x0000000000016eca      0x3b1 build_arm_cortex_m3_base_application_stm32l/task_list.o
- .debug_line    0x000000000001727b     0x111a build_arm_cortex_m3_base_application_stm32l/tetris_ui.o
- .debug_line    0x0000000000018395      0x460 build_arm_cortex_m3_base_application_stm32l/tetris_game_control.o
- .debug_line    0x00000000000187f5      0x58d build_arm_cortex_m3_base_application_stm32l/tetris_game_levels.o
- .debug_line    0x0000000000018d82      0x5ad build_arm_cortex_m3_base_application_stm32l/task_if.o
- .debug_line    0x000000000001932f      0x5fd build_arm_cortex_m3_base_application_stm32l/task_rf24_if.o
- .debug_line    0x000000000001992c      0x619 build_arm_cortex_m3_base_application_stm32l/task_uart_if.o
- .debug_line    0x0000000000019f45      0x705 build_arm_cortex_m3_base_application_stm32l/task_dbg.o
- .debug_line    0x000000000001a64a      0x7dd build_arm_cortex_m3_base_application_stm32l/view_render.o
- .debug_line    0x000000000001ae27     0x14e4 build_arm_cortex_m3_base_application_stm32l/Adafruit_GFX.o
- .debug_line    0x000000000001c30b      0xad1 build_arm_cortex_m3_base_application_stm32l/Adafruit_ssd1306syp.o
- .debug_line    0x000000000001cddc      0x4db build_arm_cortex_m3_base_application_stm32l/eeprom.o
- .debug_line    0x000000000001d2b7     0x10ed build_arm_cortex_m3_base_application_stm32l/Dhcp.o
- .debug_line    0x000000000001e3a4      0xc79 build_arm_cortex_m3_base_application_stm32l/Dns.o
- .debug_line    0x000000000001f01d      0xc4a build_arm_cortex_m3_base_application_stm32l/EthernetClient.o
- .debug_line    0x000000000001fc67      0xe19 build_arm_cortex_m3_base_application_stm32l/Ethernet.o
- .debug_line    0x0000000000020a80      0x910 build_arm_cortex_m3_base_application_stm32l/EthernetServer.o
- .debug_line    0x0000000000021390      0xd15 build_arm_cortex_m3_base_application_stm32l/EthernetUdp.o
- .debug_line    0x00000000000220a5      0x706 build_arm_cortex_m3_base_application_stm32l/nrf_data.o
- .debug_line    0x00000000000227ab      0xb47 build_arm_cortex_m3_base_application_stm32l/nrf_mac.o
- .debug_line    0x00000000000232f2      0x799 build_arm_cortex_m3_base_application_stm32l/nrf_nwk.o
- .debug_line    0x0000000000023a8b      0x929 build_arm_cortex_m3_base_application_stm32l/nrf_phy.o
- .debug_line    0x00000000000243b4      0x4d4 build_arm_cortex_m3_base_application_stm32l/link_hal.o
- .debug_line    0x0000000000024888      0x874 build_arm_cortex_m3_base_application_stm32l/link.o
- .debug_line    0x00000000000250fc      0xc2e build_arm_cortex_m3_base_application_stm32l/link_mac.o
- .debug_line    0x0000000000025d2a      0xe17 build_arm_cortex_m3_base_application_stm32l/link_phy.o
- .debug_line    0x0000000000026b41      0x754 build_arm_cortex_m3_base_application_stm32l/link_data.o
- .debug_line    0x0000000000027295     0x1d83 build_arm_cortex_m3_base_application_stm32l/PubSubClient.o
- .debug_line    0x0000000000029018      0x893 build_arm_cortex_m3_base_application_stm32l/wiring_digital.o
- .debug_line    0x00000000000298ab      0xecb build_arm_cortex_m3_base_application_stm32l/Print.o
- .debug_line    0x000000000002a776      0x7c6 build_arm_cortex_m3_base_application_stm32l/IPAddress.o
- .debug_line    0x000000000002af3c      0x88c build_arm_cortex_m3_base_application_stm32l/SPI.o
- .debug_line    0x000000000002b7c8      0xcc1 build_arm_cortex_m3_base_application_stm32l/Wire.o
- .debug_line    0x000000000002c489      0x92e build_arm_cortex_m3_base_application_stm32l/twi.o
- .debug_line    0x000000000002cdb7      0x510 build_arm_cortex_m3_base_application_stm32l/mini_cpp.o
+ .debug_line    0x000000000001727b     0x1129 build_arm_cortex_m3_base_application_stm32l/tetris_ui.o
+ .debug_line    0x00000000000183a4      0x460 build_arm_cortex_m3_base_application_stm32l/tetris_game_control.o
+ .debug_line    0x0000000000018804      0x58d build_arm_cortex_m3_base_application_stm32l/tetris_game_levels.o
+ .debug_line    0x0000000000018d91      0x5ad build_arm_cortex_m3_base_application_stm32l/task_if.o
+ .debug_line    0x000000000001933e      0x5fd build_arm_cortex_m3_base_application_stm32l/task_rf24_if.o
+ .debug_line    0x000000000001993b      0x619 build_arm_cortex_m3_base_application_stm32l/task_uart_if.o
+ .debug_line    0x0000000000019f54      0x705 build_arm_cortex_m3_base_application_stm32l/task_dbg.o
+ .debug_line    0x000000000001a659      0x7dd build_arm_cortex_m3_base_application_stm32l/view_render.o
+ .debug_line    0x000000000001ae36     0x14e4 build_arm_cortex_m3_base_application_stm32l/Adafruit_GFX.o
+ .debug_line    0x000000000001c31a      0xad1 build_arm_cortex_m3_base_application_stm32l/Adafruit_ssd1306syp.o
+ .debug_line    0x000000000001cdeb      0x4db build_arm_cortex_m3_base_application_stm32l/eeprom.o
+ .debug_line    0x000000000001d2c6     0x10ed build_arm_cortex_m3_base_application_stm32l/Dhcp.o
+ .debug_line    0x000000000001e3b3      0xc79 build_arm_cortex_m3_base_application_stm32l/Dns.o
+ .debug_line    0x000000000001f02c      0xc4a build_arm_cortex_m3_base_application_stm32l/EthernetClient.o
+ .debug_line    0x000000000001fc76      0xe19 build_arm_cortex_m3_base_application_stm32l/Ethernet.o
+ .debug_line    0x0000000000020a8f      0x910 build_arm_cortex_m3_base_application_stm32l/EthernetServer.o
+ .debug_line    0x000000000002139f      0xd15 build_arm_cortex_m3_base_application_stm32l/EthernetUdp.o
+ .debug_line    0x00000000000220b4      0x706 build_arm_cortex_m3_base_application_stm32l/nrf_data.o
+ .debug_line    0x00000000000227ba      0xb47 build_arm_cortex_m3_base_application_stm32l/nrf_mac.o
+ .debug_line    0x0000000000023301      0x799 build_arm_cortex_m3_base_application_stm32l/nrf_nwk.o
+ .debug_line    0x0000000000023a9a      0x929 build_arm_cortex_m3_base_application_stm32l/nrf_phy.o
+ .debug_line    0x00000000000243c3      0x4d4 build_arm_cortex_m3_base_application_stm32l/link_hal.o
+ .debug_line    0x0000000000024897      0x874 build_arm_cortex_m3_base_application_stm32l/link.o
+ .debug_line    0x000000000002510b      0xc2e build_arm_cortex_m3_base_application_stm32l/link_mac.o
+ .debug_line    0x0000000000025d39      0xe17 build_arm_cortex_m3_base_application_stm32l/link_phy.o
+ .debug_line    0x0000000000026b50      0x754 build_arm_cortex_m3_base_application_stm32l/link_data.o
+ .debug_line    0x00000000000272a4     0x1d83 build_arm_cortex_m3_base_application_stm32l/PubSubClient.o
+ .debug_line    0x0000000000029027      0x893 build_arm_cortex_m3_base_application_stm32l/wiring_digital.o
+ .debug_line    0x00000000000298ba      0xecb build_arm_cortex_m3_base_application_stm32l/Print.o
+ .debug_line    0x000000000002a785      0x7c6 build_arm_cortex_m3_base_application_stm32l/IPAddress.o
+ .debug_line    0x000000000002af4b      0x88c build_arm_cortex_m3_base_application_stm32l/SPI.o
+ .debug_line    0x000000000002b7d7      0xcc1 build_arm_cortex_m3_base_application_stm32l/Wire.o
+ .debug_line    0x000000000002c498      0x92e build_arm_cortex_m3_base_application_stm32l/twi.o
+ .debug_line    0x000000000002cdc6      0x510 build_arm_cortex_m3_base_application_stm32l/mini_cpp.o
 
 .debug_str      0x0000000000000000    0x107fd
  .debug_str     0x0000000000000000      0x5a9 build_arm_cortex_m3_base_application_stm32l/fsm.o

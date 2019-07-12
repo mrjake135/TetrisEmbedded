@@ -125,8 +125,8 @@ void tetris_ui(ak_msg_t* msg) {
 
 		case AC_TETRIS_NEW_PIECE:{
 			screenObj.setCursor(63,5);
-			screenObj.fillRect(63,5,50,14,BLACK);
-			screenObj.print("Lines: ");
+			screenObj.fillRect(63,5,50,23,BLACK);
+			screenObj.print("Lines:");
 			screenObj.print(lines);
 			r = 0;
 			c = 20;
